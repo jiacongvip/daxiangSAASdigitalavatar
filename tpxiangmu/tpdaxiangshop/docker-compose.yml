@@ -1,0 +1,66 @@
+name: community-ce
+services:
+  php:
+    image: webdevops/php-nginx:7.2
+    platform: linux/amd64
+    container_name: community_ce_php
+    working_dir: /app
+    entrypoint: ["/bin/sh","-lc","exec /usr/bin/supervisord -n -c /opt/docker/etc/supervisor.conf"]
+    volumes:
+      - ./:/app
+      - ./docker/php/php.ini:/opt/docker/etc/php/php.ini
+      - ./docker/nginx/conf.d/default.conf:/opt/docker/etc/nginx/vhost.conf
+      - ./docker/nginx/conf.d/10-php.conf:/opt/docker/etc/nginx/conf.d/10-php.conf
+      - ./docker/supervisor/async-worker.conf:/opt/docker/etc/supervisor.d/async-worker.conf:ro
+    depends_on:
+      mysql: { condition: service_healthy }
+      redis: { condition: service_healthy }
+    networks: [community_ce_network]
+    restart: unless-stopped
+    environment:
+      WEB_DOCUMENT_ROOT: /app/public
+      TZ: Asia/Shanghai
+    ports: ["8088:80"]
+  mysql:
+    image: mysql:8.0
+    container_name: community_ce_mysql
+    ports: ["3308:3306"]
+    volumes:
+      - community_ce_mysql_data:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d:ro
+      - ./docker/mysql/init/init.sql:/docker-entrypoint-initdb.d/10-init.sql:ro
+      - ./docker/mysql/init/20-tpdaxiangshop.sql:/docker-entrypoint-initdb.d/20-tpdaxiangshop.sql:ro
+      - ./docker/mysql/init/30-ce-slim-menus.sql:/docker-entrypoint-initdb.d/30-ce-slim-menus.sql:ro
+      - ./docker/mysql/init/40-ce-portal-bootstrap.sql:/docker-entrypoint-initdb.d/40-ce-portal-bootstrap.sql:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: tpdaxiangshop
+      TZ: Asia/Shanghai
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks: [community_ce_network]
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    container_name: community_ce_redis
+    ports: ["6380:6379"]
+    volumes: [community_ce_redis_data:/data]
+    networks: [community_ce_network]
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+networks:
+  community_ce_network: { driver: bridge }
+volumes:
+  community_ce_mysql_data:
+  community_ce_redis_data:

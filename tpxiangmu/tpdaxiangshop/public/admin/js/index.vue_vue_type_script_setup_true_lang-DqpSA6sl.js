@@ -1,0 +1,1 @@
+import{d as o,ab as t,W as r,X as s,u as a}from"./vue-vendor-BH3QE-KO.js";import{P as n}from"./index-DD0GUyTZ.js";const f=o({__name:"index",setup(p){const e=t();return(c,u)=>(s(),r(n,{key:a(e).fullPath,"poster-type":"scoreshop"}))}});export{f as _};

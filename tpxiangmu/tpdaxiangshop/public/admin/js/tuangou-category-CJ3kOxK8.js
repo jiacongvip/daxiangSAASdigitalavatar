@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const r=()=>e({url:"/TuangouCategoryApi/getList",method:"get"}),s=t=>e({url:"/TuangouCategoryApi/save",method:"post",data:t}),u=t=>e({url:"/TuangouCategoryApi/del",method:"post",data:t});export{u as d,r as g,s};

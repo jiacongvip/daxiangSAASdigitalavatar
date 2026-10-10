@@ -1,0 +1,13 @@
+.DS_Store
+**/.DS_Store
+tpxiangmu/tpdaxiangshop/runtime/cache/**
+tpxiangmu/tpdaxiangshop/runtime/log/**
+tpxiangmu/tpdaxiangshop/runtime/session/**
+tpxiangmu/tpdaxiangshop/supervisord.log
+tpxiangmu/tpdaxiangshop/supervisord.pid
+tpxiangmu/tpdaxiangshop/docker/mysql/data/
+tpxiangmu/tpdaxiangshop/docker/redis/data/
+tpxiangmu/tpdaxiangshop/public/upload/**
+!tpxiangmu/tpdaxiangshop/public/upload/.gitkeep
+*.bak-*
+.env.local

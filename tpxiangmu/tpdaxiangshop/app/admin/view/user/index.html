@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>账号列表</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  {include file="public/css"/}
+	<style>
+	#urlqr img{margin:0 auto}
+	#hexiaologinqr img{margin:0 auto}
+	</style>
+</head>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-card layui-col-md12">
+          <div class="layui-card-header"><i class="fa fa-list"></i> 账号列表</div>
+          <div class="layui-card-body" pad15>
+						<blockquote class="layui-elem-quote">给管理员分配权限，可登陆PC端后台及手机端管理助手，可设置核销权限用于订单核销</blockquote>
+						<div class="layui-col-md6" style="padding-bottom:10px">
+							<button class="layui-btn  layuiadmin-btn-list" onclick="openmax('{:url('edit')}')">新增</button>
+							<button class="layui-btn layui-btn-primary layuiadmin-btn-list" onclick="showHexiaoLoginQr()">登录地址</button>
+							{if $isadmin >0}
+							<button class="layui-btn layui-btn-primary layuiadmin-btn-list" onclick="openmax('{:url('UserGroup/index')}')">权限组</button>
+							{/if}
+						</div>
+						<div class="layui-form layui-col-md6" style="text-align:right;padding-bottom:10px">
+							<div class="layui-inline layuiadmin-input-useradmin">
+								<label class="layui-form-label" style="width:60px">账号</label>
+								<div class="layui-input-block" style="width:120px;margin-left:90px">
+									<input type="text" name="un" autocomplete="off" class="layui-input" value="{:input('get.un')}">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<button class="layui-btn layuiadmin-btn-replys" lay-submit="" lay-filter="LAY-app-forumreply-search">
+									<i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+								</button>
+							</div>
+						</div>
+						<div class="layui-col-md12">
+							<table id="tabledata" lay-filter="tabledata"></table>
+						</div>
+          </div>
+        </div>
+    </div>
+  </div>
+	{include file="public/js"/}
+	<script>
+	layui.laydate.render({ 
+		elem: '#ctime',
+		trigger: 'click',
+		range: '~' //或 range: '~' 来自定义分割字符
+	});
+  var table = layui.table;
+	var datawhere = {};
+  //数据表
+  var tableIns = table.render({
+    elem: '#tabledata'
+    ,url: "{$Request.url}" //数据接口
+    ,page: true //开启分页
+    ,cols: [[ //表头
+			{type:"checkbox"},
+      {field: 'id', title: 'ID',width:80},
+      {field: 'un', title: '账号'},
+      {field: 'groupname', title: '所属权限组'},
+			{if $isadmin!=0}
+      {field: 'addname', title: '创建人'},
+			{/if}
+      {field: 'createtime', title: '创建时间',templet:function(d){ return date('Y-m-d H:i',d.createtime)}},
+      {field: 'logintime', title: '最后登录时间',templet:function(d){ return date('Y-m-d H:i',d.logintime)}},
+      {field: 'remark', title: '备注'},
+			{if in_array('mp',$platform)}
+      {field: 'nickname', title: '绑定{:t('会员')}信息',templet:function(d){
+				if(d.mid){
+					return '<img src="'+d.headimg+'" style="width:50px"/> '+d.nickname + '&nbsp;&nbsp;&nbsp;<button onclick="jiebang('+d.id+')" class="layui-btn layui-btn-primary layui-btn-xs">解绑</button>';
+				}else{
+					return '<a href="javascript:void(0)" onclick="showqrcode('+d.id+')">点击绑定</a>';
+				}
+			}},
+			{/if}
+      {field: 'operation', title: '操作',templet:function(d){
+				var html = '';
+				html += '<button class="table-btn" onclick="openmax(\'{:url('edit')}/id/'+d.id+'\')">编辑</button>';
+				if(d.isadmin == 0 && '{$thisuserid}' != d.id){
+					html += '<button class="table-btn" onclick="datadel('+d.id+')">删除</button>';
+				}
+				return html;
+      },width:150}
+    ]]
+  });
+	
+	function showqrcode(id){
+		$.post("{:url('getbindurl')}",{id,id},function(res){
+				var html = '';
+				html+='<div style="margin:auto auto;text-align:center">';
+				html+='	<div id="urlqr" style="margin-top:20px"></div>';
+				html+='	<div style="font-size:14px;text-align:center;margin:10px 20px">用微信扫码绑定，用于接收消息通知</div>';
+				html+='</div>';
+				layer.open({type:1,area:['300px','350px'],content:html,title:false,shadeClose:true});
+				var qrcode = new QRCode('urlqr', {
+					text: 'your content',
+					width: 240,
+					height: 240,
+					colorDark : '#000000',
+					colorLight : '#ffffff',
+					correctLevel : QRCode.CorrectLevel.H
+				});
+				qrcode.clear();
+				qrcode.makeCode(res.url);
+			})
+	}
+	function showHexiaoLoginQr(){
+		var pagepath = 'admin/index/index';
+		{if !in_array('mp',$platform)}
+		showwxqrcode(pagepath);
+		return;
+		{/if}
+		var url = '{$Think.const.PRE_URL2}/h5/{$aid}.html#'+pagepath;
+		var html = '';
+		html+='<div style="margin:20px">';
+		html+='	<div style="width:100%;margin:10px 0" id="hexiaologinqr"></div>'; 
+		{if in_array('wx',$platform)}
+		html+='	<div style="width:100%;text-align:center"><button class="layui-btn layui-btn-sm layui-btn-primary" onclick="showwxqrcode(\''+pagepath+'\')">查看小程序码</button></div>'; 
+		{/if}
+		html+='	<div style="height:50px;line-height:25px;">链接地址：'+url+'</div>';
+		html+='	<div style="height:50px;line-height:25px;">页面路径：/'+pagepath+'<button style="margin-left:10px" class="layui-btn layui-btn-xs layui-btn-primary" onclick="copyText(\'/'+pagepath+'\')">复制</button></div>';
+		html+='	<div style="height:50px;line-height:25px;">电脑端：{$Think.const.PRE_URL}/?s=/Backstage/index</div>';
+		html+='</div>'
+
+		layer.open({type:1,area:['500px','520px'],content:html,title:false,shadeClose:true});
+		var qrcode = new QRCode('hexiaologinqr', {
+			text: 'your content',
+			width: 280,
+			height: 280,
+			colorDark : '#000000',
+			colorLight : '#ffffff',
+			correctLevel : QRCode.CorrectLevel.H
+		});
+		qrcode.clear();
+		qrcode.makeCode("{:m_url('admin/index/index')}");
+	}
+	function showwxqrcode(pagepath){
+		var index = layer.load();
+		$.post("{:url('DesignerPage/getwxqrcode')}",{path:pagepath},function(res){
+			layer.close(index);
+			if(res.status==0){
+				//dialog(res.msg);
+				layer.open({type:1,area:['500px','420px'],content:'<div style="margin:auto auto;text-align:center"><div style="color:red;width:280px;height:180px;margin-top:100px">'+res.msg+'</div><div style="height:25px;line-height:25px;">小程序路径：'+pagepath+'</div><div style="font-size:14px;text-align:center;margin:10px 20px">电脑端：{$Think.const.PRE_URL}/?s=/Backstage/index</div></div></div>',title:false,shadeClose:true})
+			}else{
+				layer.open({type:1,area:['500px','420px'],content:'<div style="margin:auto auto;text-align:center"><img src="'+res.url+'" style="margin-top:20px;max-width:280px;max-height:280px"/><div style="height:25px;line-height:25px;">小程序路径：'+pagepath+'</div><div style="font-size:14px;text-align:center;margin:10px 20px">电脑端：{$Think.const.PRE_URL}/?s=/Backstage/index</div></div></div>',title:false,shadeClose:true})
+			}
+		})
+	}
+	function copyText(text) {
+			var textarea = document.createElement("textarea"); //创建input对象
+			var currentFocus = document.activeElement; //当前获得焦点的元素
+			var toolBoxwrap = document.getElementById('NewsToolBox'); //将文本框插入到NewsToolBox这个之后
+			toolBoxwrap.appendChild(textarea); //添加元素
+			textarea.value = text;
+			textarea.focus();
+			if (textarea.setSelectionRange) {
+					textarea.setSelectionRange(0, textarea.value.length); //获取光标起始位置到结束位置
+			} else {
+					textarea.select();
+			}
+			try {
+					var flag = document.execCommand("copy"); //执行复制
+			} catch (eo) {
+					var flag = false;
+			}
+			toolBoxwrap.removeChild(textarea); //删除元素
+			currentFocus.focus();
+			if(flag) layer.msg('复制成功');
+			return flag;
+	}
+	//排序
+	table.on('sort(tabledata)', function(obj){
+		datawhere.field = obj.field;
+		datawhere.order = obj.type;
+		tableIns.reload({
+			initSort: obj,
+			where: datawhere
+		});
+	});
+	//检索
+	layui.form.on('submit(LAY-app-forumreply-search)', function(obj){
+		var field = obj.field
+		var olddatawhere = datawhere
+		datawhere = field
+		datawhere.field = olddatawhere.field
+		datawhere.order = olddatawhere.order
+		tableIns.reload({
+			where: datawhere,
+			page: {curr: 1}
+		});
+	})
+	//删除
+	function datadel(id){
+		if(id==0){
+			var checkStatus = table.checkStatus('tabledata')
+			var checkData = checkStatus.data; //得到选中的数据
+			if(checkData.length === 0){
+				 return layer.msg('请选择数据');
+			}
+			var id = [];
+			for(var i=0;i<checkData.length;i++){
+				id.push(checkData[i]['id']);
+			}
+		}
+		layer.confirm('确定要删除吗?',{icon: 7, title:'操作确认'}, function(index){
+			//do something
+			layer.close(index);
+			var index = layer.load();
+			$.post("{:url('del')}",{op:'del',id:id},function(data){
+				layer.close(index);
+				dialog(data.msg,data.status);
+				tableIns.reload()
+			})
+		});
+	}
+	function jiebang(id){
+		layer.confirm('确定要解绑吗?',{icon: 7, title:'操作确认'}, function(index){
+			//do something
+			layer.close(index);
+			var index = layer.load();
+			$.post("{:url('jiebang')}",{id:id},function(data){
+				layer.close(index);
+				dialog(data.msg,data.status);
+				tableIns.reload()
+			})
+		});
+	}
+	</script>
+	{include file="public/copyright"/}
+	<div id="NewsToolBox"></div>
+</body>
+</html>

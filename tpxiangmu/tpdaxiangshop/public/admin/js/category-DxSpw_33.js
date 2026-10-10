@@ -1,0 +1,1 @@
+import{r as t}from"./index-CTO9TwcJ.js";function o(){return t({url:"/HotelCategory/getList",method:"POST"})}function a(e){return t({url:"/HotelCategory/save",method:"POST",data:e})}function s(e){return t({url:"/HotelCategory/delete",method:"POST",data:e})}export{s as d,o as g,a as s};

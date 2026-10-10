@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const r={getList:()=>e({url:"/RestaurantCategory/getList",method:"POST",data:{}}),getDetail:t=>e({url:"/RestaurantCategory/getDetail",method:"POST",data:t?{id:t}:{}}),save:t=>e({url:"/RestaurantCategory/save",method:"POST",data:{info:t}}),delete:t=>e({url:"/RestaurantCategory/delete",method:"POST",data:{id:t}})};export{r};

@@ -1,0 +1,233 @@
+{
+  "generatedAt": "2026-10-10T08:06:37.727Z",
+  "generatedBy": "tools/delivery-packager",
+  "repoRoot": "/Users/jiacong/Desktop/php",
+  "options": {
+    "packageName": "community-ce",
+    "selectedManifests": [
+      "community-ce"
+    ],
+    "includeRecommended": true,
+    "includeLegacyCompat": false,
+    "includeVendor": true,
+    "includeFrontendSource": true,
+    "includeDocs": true,
+    "createZip": false,
+    "pluginTiers": {}
+  },
+  "manifests": [
+    {
+      "id": "community-ce",
+      "file": "community-ce.json",
+      "title": "community-ce",
+      "version": "2026-10-10.8",
+      "type": "base"
+    }
+  ],
+  "requiredTables": [
+    {
+      "name": "admin_user",
+      "owner": "base_package",
+      "reason": "后台登录、用户信息、权限上下文",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_loginlog",
+      "owner": "base_package",
+      "reason": "登录日志",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin",
+      "owner": "base_package",
+      "reason": "站点级存储与额度配置",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_set",
+      "owner": "base_package",
+      "reason": "站点 aid 集合，插件安装时遍历站点",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "sysset",
+      "owner": "base_package",
+      "reason": "登录页品牌信息、远程存储配置（开源前需脱敏）",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_menu",
+      "owner": "base_package",
+      "reason": "数据库菜单模式基础菜单",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_user_group",
+      "owner": "base_package",
+      "reason": "权限组与 auth_data",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_system_config",
+      "owner": "base_package",
+      "reason": "menu_use_database 等系统开关",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_upload",
+      "owner": "base_package",
+      "reason": "素材库与上传记录",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_upload_group",
+      "owner": "base_package",
+      "reason": "素材分组",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_plugin_menu",
+      "owner": "base_package",
+      "reason": "插件菜单注册",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "admin_plugin_version",
+      "owner": "base_package",
+      "reason": "插件安装版本与 use_vue 标记",
+      "manifest": "community-ce"
+    }
+  ],
+  "optionalTables": [
+    {
+      "name": "admin_plugin_top_menu",
+      "owner": "base_package",
+      "requiredWhen": "需要站点级插件提升为一级菜单",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "plugin_business_auth",
+      "owner": "base_package",
+      "requiredWhen": "需要商家级插件权限分配",
+      "manifest": "community-ce"
+    },
+    {
+      "name": "plog",
+      "owner": "base_package",
+      "requiredWhen": "保留操作日志",
+      "manifest": "community-ce"
+    }
+  ],
+  "compatTablesCurrentCode": [],
+  "files": [
+    "tpxiangmu/tpdaxiangshop/composer.json",
+    "tpxiangmu/tpdaxiangshop/composer.lock",
+    "tpxiangmu/tpdaxiangshop/think",
+    "tpxiangmu/tpdaxiangshop/config.php",
+    "tpxiangmu/tpdaxiangshop/custom.php",
+    "tpxiangmu/tpdaxiangshop/docker-compose.yml",
+    "tpxiangmu/tpdaxiangshop/Dockerfile",
+    "tpxiangmu/tpdaxiangshop/docker/nginx",
+    "tpxiangmu/tpdaxiangshop/docker/php",
+    "tpxiangmu/tpdaxiangshop/docker/supervisor",
+    "tpxiangmu/tpdaxiangshop/docker/mysql/conf.d",
+    "tpxiangmu/tpdaxiangshop/docker/mysql/init",
+    "tpxiangmu/tpdaxiangshop/docker-start.sh",
+    "tpxiangmu/tpdaxiangshop/docker-import-db.sh",
+    "tpxiangmu/tpdaxiangshop/app/AppService.php",
+    "tpxiangmu/tpdaxiangshop/app/service.php",
+    "tpxiangmu/tpdaxiangshop/app/BaseController.php",
+    "tpxiangmu/tpdaxiangshop/app/Request.php",
+    "tpxiangmu/tpdaxiangshop/app/common.php",
+    "tpxiangmu/tpdaxiangshop/app/provider.php",
+    "tpxiangmu/tpdaxiangshop/app/middleware.php",
+    "tpxiangmu/tpdaxiangshop/app/ExceptionHandle.php",
+    "tpxiangmu/tpdaxiangshop/config",
+    "tpxiangmu/tpdaxiangshop/route/app.php",
+    "tpxiangmu/tpdaxiangshop/public/index.php",
+    "tpxiangmu/tpdaxiangshop/public/install.php",
+    "tpxiangmu/tpdaxiangshop/public/adminapi.php",
+    "tpxiangmu/tpdaxiangshop/public/.htaccess",
+    "tpxiangmu/tpdaxiangshop/public/nginx.htaccess",
+    "tpxiangmu/tpdaxiangshop/public/robots.txt",
+    "tpxiangmu/tpdaxiangshop/public/favicon.ico",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Common.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Login.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/VueMenu.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Upload.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Plugin.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/PluginManagerApi.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminPluginTopMenu.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminMenuApi.php",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminUserApi.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Common.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Menu.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/MenuDatabase.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Pic.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginMenu.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginMigration.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginTopMenuConfig.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/System.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginBusinessAuth.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/SystemConfig.php",
+    "tpxiangmu/tpdaxiangshop/app/common",
+    "tpxiangmu/tpdaxiangshop/public/admin",
+    "tpxiangmu/tpdaxiangshop/app/plugin/digitalavatar",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminapiDigitalAvatar.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/ConsoleAuth.php",
+    "tpxiangmu/tpdaxiangshop/public/portal/digitalavatar",
+    "tpxiangmu/tpdaxiangshop/app/adminapi/controller/BackstageApi.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginCategoryRegistry.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginDashboardRegistry.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PageVisitStatService.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/MemberOpenidBindService.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/WithdrawFeeRewardService.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/WithdrawMultiple.php",
+    "tpxiangmu/tpdaxiangshop/public/website.php",
+    "tpxiangmu/tpdaxiangshop/app/website/route/app.php",
+    "tpxiangmu/tpdaxiangshop/app/website/controller/PortalApiDigitalAvatar.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/ApiBase.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/ApiCommon.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/SimulateLoginTokenService.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Member.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Sms.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Wechat.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/H5ShareMetadata.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/model/Member.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/MapQuery.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/AiNewapi.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/File.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/Alipay.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/AsyncWorkerLogService.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/model/Payorder.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoProviderService.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoAvatarVoiceApi.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoImageApi.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoNiwaModelCatalog.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoInstaller.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoRuntimeService.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoMediaLimitService.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoOutputFileName.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoCreditService.php",
+    "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/plugin.json",
+    "tpxiangmu/tpdaxiangshop/public/admin.php",
+    "tpxiangmu/tpdaxiangshop/public/website_entry_dispatch.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/Base.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/Common.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/User.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/controller/UserGroup.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/view/user",
+    "tpxiangmu/tpdaxiangshop/app/admin/common/PluginHexiaoRegistry.php",
+    "docs/delivery-manifests/community-ce.json"
+  ],
+  "stats": {
+    "copiedFiles": 3494,
+    "copiedDirs": 11,
+    "skipped": [],
+    "skippedArchives": [
+      "tpxiangmu/tpdaxiangshop/public/portal/digitalavatar/归档.zip"
+    ],
+    "warnings": []
+  }
+}

@@ -1,0 +1,1 @@
+import{s as a}from"./index-CTO9TwcJ.js";function i(e){return a({url:"/ConsoleDesigner/getPageList",method:"post",data:e}).then(t=>t.data||{list:[],total:0})}function n(e){return a({url:"/DesignerPage/getDetail",method:"post",data:{id:e}}).then(t=>t.data||{info:{},pagedata:"[]",pageinfo:"[]"})}export{i as a,n as g};

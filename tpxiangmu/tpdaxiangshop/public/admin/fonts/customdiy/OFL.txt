@@ -1,0 +1,19 @@
+These font files are distributed under the SIL Open Font License, Version 1.1.
+https://scripts.sil.org/OFL
+
+Graduate — Copyright 2012 The Graduate Project Authors
+https://github.com/etunni/graduate
+
+Bungee — Copyright The Bungee Project Authors
+https://github.com/djrrb/Bungee
+
+Black Ops One — Copyright 2022 The Black Ops Project Authors
+https://github.com/SorkinType/Black-Ops
+
+Michroma — Copyright 2011 The Michroma Project Authors
+https://github.com/googlefonts/Michroma-font
+
+Audiowide — Copyright 2012 Brian J. Bonislawsky DBA Astigmatic (AOETI)
+
+Goldman — Copyright 2018 The Goldman Project Authors
+https://github.com/magictype/goldman

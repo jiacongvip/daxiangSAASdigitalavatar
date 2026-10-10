@@ -1,0 +1,1 @@
+import{s as t}from"./index-CTO9TwcJ.js";const o={getInfo:()=>t.post("/JifenchiApi/getInfo"),save:i=>t.post("/JifenchiApi/save",i),getStaticLogList:i=>t.post("/JifenchiApi/getStaticLogList",i),getDynamicLogList:i=>t.post("/JifenchiApi/getDynamicLogList",i),delLog:i=>t.post("/JifenchiApi/delLog",i)};export{o as j};

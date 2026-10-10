@@ -1,0 +1,1 @@
+import{A as t}from"./apply-list-BHQFUFYY.js";import{d as o,W as p,X as r}from"./vue-vendor-BH3QE-KO.js";import"./linggong-Ct3x3UDU.js";import"./index-CTO9TwcJ.js";import"./antd-vendor-BXeG7MAg.js";import"./utils-vendor-dR2luS_Z.js";import"./charts-vendor-CwCbZZ1s.js";const d=o({__name:"apply",setup(e){return(m,a)=>(r(),p(t,{title:"报名接单",mode:"all"}))}});export{d as default};

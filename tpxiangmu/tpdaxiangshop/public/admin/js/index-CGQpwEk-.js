@@ -1,0 +1,1 @@
+import{d as t,a5 as o,o as r,a1 as n,X as s}from"./vue-vendor-BH3QE-KO.js";import{o as a,l as c}from"./notice-center-Cjyy1vZ9.js";const i={class:"notice-center-redirect"},l=t({__name:"index",setup(_){const e=o();return r(()=>{a({tab:"system"}),c(e)}),(m,p)=>(s(),n("div",i,"正在打开通知中心..."))}});export{l as default};

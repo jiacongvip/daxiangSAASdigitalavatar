@@ -1,0 +1,1 @@
+import{r as t}from"./index-CTO9TwcJ.js";const r={getMeta(){return t({url:"/YunkucunGoodsPerformanceApi/getMeta",method:"post"})},getList(e){return t({url:"/YunkucunGoodsPerformanceApi/getList",method:"post",data:e})},exportList(e){return t({url:"/YunkucunGoodsPerformanceApi/exportList",method:"post",data:e})}};export{r as y};

@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const r={getSettings:()=>e({url:"/RestaurantQueueSet/getSettings",method:"POST"}),save:t=>e({url:"/RestaurantQueueSet/save",method:"POST",data:{info:t}})};export{r};

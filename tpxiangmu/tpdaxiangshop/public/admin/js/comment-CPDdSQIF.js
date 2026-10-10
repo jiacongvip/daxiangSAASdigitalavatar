@@ -1,0 +1,1 @@
+import o from"./index-CHVP_oB7.js";import{d as t,W as e,X as m}from"./vue-vendor-BH3QE-KO.js";import"./index-CTO9TwcJ.js";import"./antd-vendor-BXeG7MAg.js";import"./utils-vendor-dR2luS_Z.js";import"./charts-vendor-CwCbZZ1s.js";const f=t({__name:"comment",setup(r){return(n,p)=>(m(),e(o))}});export{f as default};

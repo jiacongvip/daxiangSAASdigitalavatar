@@ -1,0 +1,1 @@
+import{r as t}from"./index-CTO9TwcJ.js";const o={getDetail(){return t({url:"/YunkucunGoodsSyssetApi/getDetail",method:"post",data:{}})},save(s){return t({url:"/YunkucunGoodsSyssetApi/save",method:"post",data:s})}};export{o as y};

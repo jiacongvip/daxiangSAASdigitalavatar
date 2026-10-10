@@ -1,0 +1,8 @@
+Community CE (digitalavatar + plugin runtime)
+Copyright 2026 Jamie Kunzexvls / Community CE contributors
+
+This product includes software developed for the open-source community edition
+of the digital avatar / plugin runtime stack.
+
+Third-party components under vendor/ retain their respective licenses
+(see each package's LICENSE / NOTICE files under vendor/).

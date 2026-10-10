@@ -1,0 +1,1 @@
+import{s as t}from"./index-CTO9TwcJ.js";const r={getRecordList:e=>t.get("/SignApi/getRecordList",{params:e}),deleteRecord:e=>t.post("/SignApi/deleteRecord",e),exportRecord:e=>t.get("/SignApi/exportRecord",{params:e}),getSettings:()=>t.get("/SignApi/getSettings"),saveSettings:e=>t.post("/SignApi/saveSettings",e),getCouponList:()=>t.get("/SignApi/getCouponList")};export{r as s};

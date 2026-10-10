@@ -1,0 +1,1 @@
+import{d as o,ab as t,W as r,X as a,u as s}from"./vue-vendor-BH3QE-KO.js";import{P as n}from"./index-DD0GUyTZ.js";const f=o({__name:"index",setup(c){const e=t();return(p,u)=>(a(),r(n,{key:s(e).fullPath,"poster-type":"collage","fixed-type":"collage"}))}});export{f as _};

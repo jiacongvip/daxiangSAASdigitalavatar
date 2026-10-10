@@ -1,0 +1,1 @@
+import{d as t,ab as o,W as r,X as a,u as s}from"./vue-vendor-BH3QE-KO.js";import{P as n}from"./index-DD0GUyTZ.js";const i=t({__name:"index",setup(u){const e=o();return(p,c)=>(a(),r(n,{key:s(e).fullPath,"poster-type":"tuangou","fixed-type":"tuangou"}))}});export{i as _};

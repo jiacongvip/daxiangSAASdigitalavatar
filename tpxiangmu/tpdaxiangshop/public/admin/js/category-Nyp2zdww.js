@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const o={getList(t){return e({url:"/ZhaopinApi/getCategoryList",method:"post",data:t})},save(t){return e({url:"/ZhaopinApi/saveCategory",method:"post",data:t})},remove(t){return e({url:"/ZhaopinApi/delCategory",method:"post",data:t})}};export{o as c};

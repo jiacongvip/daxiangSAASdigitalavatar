@@ -1,0 +1,1 @@
+import{r as t}from"./index-CTO9TwcJ.js";const r={getList(e){return t({url:"/ZhaopinApi/getTypeList",method:"post",data:e})},getDetail(e){return t({url:"/ZhaopinApi/getTypeDetail",method:"post",data:e})},save(e){return t({url:"/ZhaopinApi/saveType",method:"post",data:e})},remove(e){return t({url:"/ZhaopinApi/delType",method:"post",data:e})}};export{r as t};

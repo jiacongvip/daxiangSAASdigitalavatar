@@ -1,0 +1,152 @@
+2026-07-03 16:39:27 pid:1317 Workerman[think] start in DEBUG mode
+2026-07-03 16:39:53 pid:1321 RedisException: Connection refused in /app/vendor/topthink/framework/src/think/cache/driver/Redis.php:63
+Stack trace:
+#0 /app/vendor/topthink/framework/src/think/cache/driver/Redis.php(63): Redis->connect('127.0.0.1', 6379, 0)
+#1 /app/app/admin/common/Worker.php(940): think\cache\driver\Redis->__construct()
+#2 /app/vendor/workerman/workerman/Worker.php(2477): app\admin\common\Worker->onConnect(Object(Workerman\Connection\TcpConnection))
+#3 /app/vendor/workerman/workerman/Events/Select.php(292): Workerman\Worker->acceptConnection(Resource id #181)
+#4 /app/vendor/workerman/workerman/Worker.php(2410): Workerman\Events\Select->loop()
+#5 /app/vendor/workerman/workerman/Worker.php(1543): Workerman\Worker->run()
+#6 /app/vendor/workerman/workerman/Worker.php(1373): Workerman\Worker::forkOneWorkerForLinux(Object(Workerman\Worker))
+#7 /app/vendor/workerman/workerman/Worker.php(1347): Workerman\Worker::forkWorkersForLinux()
+#8 /app/vendor/workerman/workerman/Worker.php(547): Workerman\Worker::forkWorkers()
+#9 /app/vendor/topthink/think-worker/src/command/Server.php(75): Workerman\Worker::runAll()
+#10 /app/vendor/topthink/framework/src/think/console/Command.php(210): think\worker\command\Server->execute(Object(think\console\Input), Object(think\console\Output))
+#11 /app/vendor/topthink/framework/src/think/Console.php(654): think\console\Command->run(Object(think\console\Input), Object(think\console\Output))
+#12 /app/vendor/topthink/framework/src/think/Console.php(313): think\Console->doRunCommand(Object(think\worker\command\Server), Object(think\console\Input), Object(think\console\Output))
+#13 /app/vendor/topthink/framework/src/think/Console.php(250): think\Console->doRun(Object(think\console\Input), Object(think\console\Output))
+#14 /app/think(41): think\Console->run()
+#15 {main}
+2026-07-03 16:39:53 pid:1321 Worker[1321] process terminated
+2026-07-03 16:39:53 pid:1317 worker[none:1321] exit with status 64000
+2026-07-03 16:40:19 pid:1339 RedisException: Connection refused in /app/vendor/topthink/framework/src/think/cache/driver/Redis.php:63
+Stack trace:
+#0 /app/vendor/topthink/framework/src/think/cache/driver/Redis.php(63): Redis->connect('127.0.0.1', 6379, 0)
+#1 /app/app/admin/common/Worker.php(940): think\cache\driver\Redis->__construct()
+#2 /app/vendor/workerman/workerman/Worker.php(2477): app\admin\common\Worker->onConnect(Object(Workerman\Connection\TcpConnection))
+#3 /app/vendor/workerman/workerman/Events/Select.php(292): Workerman\Worker->acceptConnection(Resource id #182)
+#4 /app/vendor/workerman/workerman/Worker.php(2410): Workerman\Events\Select->loop()
+#5 /app/vendor/workerman/workerman/Worker.php(1543): Workerman\Worker->run()
+#6 /app/vendor/workerman/workerman/Worker.php(1373): Workerman\Worker::forkOneWorkerForLinux(Object(Workerman\Worker))
+#7 /app/vendor/workerman/workerman/Worker.php(1347): Workerman\Worker::forkWorkersForLinux()
+#8 /app/vendor/workerman/workerman/Worker.php(1677): Workerman\Worker::forkWorkers()
+#9 /app/vendor/workerman/workerman/Worker.php(1626): Workerman\Worker::monitorWorkersForLinux()
+#10 /app/vendor/workerman/workerman/Worker.php(549): Workerman\Worker::monitorWorkers()
+#11 /app/vendor/topthink/think-worker/src/command/Server.php(75): Workerman\Worker::runAll()
+#12 /app/vendor/topthink/framework/src/think/console/Command.php(210): think\worker\command\Server->execute(Object(think\console\Input), Object(think\console\Output))
+#13 /app/vendor/topthink/framework/src/think/Console.php(654): think\console\Command->run(Object(think\console\Input), Object(think\console\Output))
+#14 /app/vendor/topthink/framework/src/think/Console.php(313): think\Console->doRunCommand(Object(think\worker\command\Server), Object(think\console\Input), Object(think\console\Output))
+#15 /app/vendor/topthink/framework/src/think/Console.php(250): think\Console->doRun(Object(think\console\Input), Object(think\console\Output))
+#16 /app/think(41): think\Console->run()
+#17 {main}
+2026-07-03 16:40:19 pid:1339 Worker[1339] process terminated
+2026-07-03 16:40:19 pid:1317 worker[none:1339] exit with status 64000
+2026-07-03 16:41:51 pid:1397 Workerman[think] start in DEBUG mode
+2026-07-03 16:41:51 pid:1397 Workerman[think] already running
+2026-07-03 16:41:53 pid:1357 RedisException: Connection refused in /app/vendor/topthink/framework/src/think/cache/driver/Redis.php:63
+Stack trace:
+#0 /app/vendor/topthink/framework/src/think/cache/driver/Redis.php(63): Redis->connect('127.0.0.1', 6379, 0)
+#1 /app/app/admin/common/Worker.php(940): think\cache\driver\Redis->__construct()
+#2 /app/vendor/workerman/workerman/Worker.php(2477): app\admin\common\Worker->onConnect(Object(Workerman\Connection\TcpConnection))
+#3 /app/vendor/workerman/workerman/Events/Select.php(292): Workerman\Worker->acceptConnection(Resource id #183)
+#4 /app/vendor/workerman/workerman/Worker.php(2410): Workerman\Events\Select->loop()
+#5 /app/vendor/workerman/workerman/Worker.php(1543): Workerman\Worker->run()
+#6 /app/vendor/workerman/workerman/Worker.php(1373): Workerman\Worker::forkOneWorkerForLinux(Object(Workerman\Worker))
+#7 /app/vendor/workerman/workerman/Worker.php(1347): Workerman\Worker::forkWorkersForLinux()
+#8 /app/vendor/workerman/workerman/Worker.php(1677): Workerman\Worker::forkWorkers()
+#9 /app/vendor/workerman/workerman/Worker.php(1626): Workerman\Worker::monitorWorkersForLinux()
+#10 /app/vendor/workerman/workerman/Worker.php(549): Workerman\Worker::monitorWorkers()
+#11 /app/vendor/topthink/think-worker/src/command/Server.php(75): Workerman\Worker::runAll()
+#12 /app/vendor/topthink/framework/src/think/console/Command.php(210): think\worker\command\Server->execute(Object(think\console\Input), Object(think\console\Output))
+#13 /app/vendor/topthink/framework/src/think/Console.php(654): think\console\Command->run(Object(think\console\Input), Object(think\console\Output))
+#14 /app/vendor/topthink/framework/src/think/Console.php(313): think\Console->doRunCommand(Object(think\worker\command\Server), Object(think\console\Input), Object(think\console\Output))
+#15 /app/vendor/topthink/framework/src/think/Console.php(250): think\Console->doRun(Object(think\console\Input), Object(think\console\Output))
+#16 /app/think(41): think\Console->run()
+#17 {main}
+2026-07-03 16:41:53 pid:1357 Worker[1357] process terminated
+2026-07-03 16:41:54 pid:1317 worker[none:1357] exit with status 64000
+2026-07-03 16:42:17 pid:1414 RedisException: Connection refused in /app/vendor/topthink/framework/src/think/cache/driver/Redis.php:63
+Stack trace:
+#0 /app/vendor/topthink/framework/src/think/cache/driver/Redis.php(63): Redis->connect('127.0.0.1', 6379, 0)
+#1 /app/app/admin/common/Worker.php(940): think\cache\driver\Redis->__construct()
+#2 /app/vendor/workerman/workerman/Worker.php(2477): app\admin\common\Worker->onConnect(Object(Workerman\Connection\TcpConnection))
+#3 /app/vendor/workerman/workerman/Events/Select.php(292): Workerman\Worker->acceptConnection(Resource id #184)
+#4 /app/vendor/workerman/workerman/Worker.php(2410): Workerman\Events\Select->loop()
+#5 /app/vendor/workerman/workerman/Worker.php(1543): Workerman\Worker->run()
+#6 /app/vendor/workerman/workerman/Worker.php(1373): Workerman\Worker::forkOneWorkerForLinux(Object(Workerman\Worker))
+#7 /app/vendor/workerman/workerman/Worker.php(1347): Workerman\Worker::forkWorkersForLinux()
+#8 /app/vendor/workerman/workerman/Worker.php(1677): Workerman\Worker::forkWorkers()
+#9 /app/vendor/workerman/workerman/Worker.php(1626): Workerman\Worker::monitorWorkersForLinux()
+#10 /app/vendor/workerman/workerman/Worker.php(549): Workerman\Worker::monitorWorkers()
+#11 /app/vendor/topthink/think-worker/src/command/Server.php(75): Workerman\Worker::runAll()
+#12 /app/vendor/topthink/framework/src/think/console/Command.php(210): think\worker\command\Server->execute(Object(think\console\Input), Object(think\console\Output))
+#13 /app/vendor/topthink/framework/src/think/Console.php(654): think\console\Command->run(Object(think\console\Input), Object(think\console\Output))
+#14 /app/vendor/topthink/framework/src/think/Console.php(313): think\Console->doRunCommand(Object(think\worker\command\Server), Object(think\console\Input), Object(think\console\Output))
+#15 /app/vendor/topthink/framework/src/think/Console.php(250): think\Console->doRun(Object(think\console\Input), Object(think\console\Output))
+#16 /app/think(41): think\Console->run()
+#17 {main}
+2026-07-03 16:42:17 pid:1414 Worker[1414] process terminated
+2026-07-03 16:42:17 pid:1317 worker[none:1414] exit with status 64000
+2026-07-03 16:43:32 pid:1540 Workerman[think] start in DEBUG mode
+2026-07-05 13:58:20 pid:1544 think\db\exception\PDOException: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away in /app/vendor/topthink/think-orm/src/db/PDOConnection.php:797
+Stack trace:
+#0 /app/vendor/topthink/think-orm/src/db/connector/Mysql.php(66): think\db\PDOConnection->getPDOStatement('SHOW FULL COLUM...')
+#1 /app/vendor/topthink/think-orm/src/db/PDOConnection.php(422): think\db\connector\Mysql->getFields('`ddwx_peisong_o...')
+#2 /app/vendor/topthink/think-orm/src/db/PDOConnection.php(362): think\db\PDOConnection->getTableFieldsInfo('ddwx_peisong_or...')
+#3 /app/vendor/topthink/think-orm/src/db/PDOConnection.php(409): think\db\PDOConnection->getSchemaInfo('ddwx_peisong_or...')
+#4 /app/vendor/topthink/think-orm/src/db/PDOConnection.php(459): think\db\PDOConnection->getTableInfo('ddwx_peisong_or...', 'pk')
+#5 /app/vendor/topthink/think-orm/src/db/Query.php(290): think\db\PDOConnection->getPk('ddwx_peisong_or...')
+#6 /app/vendor/topthink/think-orm/src/db/concern/WhereQuery.php(442): think\db\Query->getPk()
+#7 /app/vendor/topthink/think-orm/src/db/concern/WhereQuery.php(422): think\db\BaseQuery->whereEq('id', 56)
+#8 /app/vendor/topthink/think-orm/src/db/concern/WhereQuery.php(386): think\db\BaseQuery->parseWhereItem('AND', 'id', 56, NULL, Array)
+#9 /app/vendor/topthink/think-orm/src/db/concern/WhereQuery.php(41): think\db\BaseQuery->parseWhereExp('AND', 'id', 56, NULL, Array)
+#10 /app/app/admin/common/Worker.php(598): think\db\BaseQuery->where('id', 56)
+#11 /app/vendor/workerman/workerman/Connection/TcpConnection.php(656): app\admin\common\Worker->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#12 /app/vendor/workerman/workerman/Events/Select.php(292): Workerman\Connection\TcpConnection->baseRead(Resource id #239)
+#13 /app/vendor/workerman/workerman/Worker.php(2410): Workerman\Events\Select->loop()
+#14 /app/vendor/workerman/workerman/Worker.php(1543): Workerman\Worker->run()
+#15 /app/vendor/workerman/workerman/Worker.php(1373): Workerman\Worker::forkOneWorkerForLinux(Object(Workerman\Worker))
+#16 /app/vendor/workerman/workerman/Worker.php(1347): Workerman\Worker::forkWorkersForLinux()
+#17 /app/vendor/workerman/workerman/Worker.php(547): Workerman\Worker::forkWorkers()
+#18 /app/vendor/topthink/think-worker/src/command/Server.php(75): Workerman\Worker::runAll()
+#19 /app/vendor/topthink/framework/src/think/console/Command.php(210): think\worker\command\Server->execute(Object(think\console\Input), Object(think\console\Output))
+#20 /app/vendor/topthink/framework/src/think/Console.php(654): think\console\Command->run(Object(think\console\Input), Object(think\console\Output))
+#21 /app/vendor/topthink/framework/src/think/Console.php(313): think\Console->doRunCommand(Object(think\worker\command\Server), Object(think\console\Input), Object(think\console\Output))
+#22 /app/vendor/topthink/framework/src/think/Console.php(250): think\Console->doRun(Object(think\console\Input), Object(think\console\Output))
+#23 /app/think(41): think\Console->run()
+#24 {main}
+2026-07-05 13:58:20 pid:1544 Worker[1544] process terminated
+2026-07-05 13:58:21 pid:1540 worker[none:1544] exit with status 64000
+2026-07-28 00:17:46 pid:18927 Workerman[think] status 
+2026-07-28 00:17:46 pid:18927 Workerman[think] not run
+2026-07-28 00:18:27 pid:18956 Workerman[think] start in DAEMON mode
+2026-07-28 00:21:31 pid:18970 Workerman[think] status 
+2026-07-28 00:24:12 pid:19027 Workerman[think] status 
+2026-07-28 00:48:33 pid:19165 Workerman[think] status 
+2026-07-28 00:49:10 pid:19213 Workerman[think] restart 
+2026-07-28 00:49:10 pid:19213 Workerman[think] is stopping ...
+2026-07-28 00:49:10 pid:18966 Workerman[think] stopping ...
+2026-07-28 00:49:11 pid:18966 Workerman[think] has been stopped
+2026-07-28 00:49:11 pid:19213 Workerman[think] stop success
+2026-07-28 00:49:47 pid:19222 Workerman[think] status 
+2026-07-28 00:56:45 pid:19254 Workerman[think] status 
+2026-07-28 09:42:49 pid:19497 Workerman[think] status 
+2026-07-28 09:48:22 pid:19504 Workerman[think] status 
+2026-07-28 09:48:38 pid:19511 Workerman[think] status 
+2026-07-28 11:20:43 pid:19701 Workerman[think] reload 
+2026-07-28 11:20:43 pid:19213 Workerman[think] reloading
+2026-07-28 11:23:29 pid:19876 Workerman[think] status 
+2026-07-28 11:27:39 pid:20002 Workerman[think] restart 
+2026-07-28 11:27:39 pid:20002 Workerman[think] is stopping ...
+2026-07-28 11:27:39 pid:19213 Workerman[think] stopping ...
+2026-07-28 11:27:40 pid:19213 Workerman[think] has been stopped
+2026-07-28 11:27:40 pid:20002 Workerman[think] stop success
+2026-07-28 11:27:40 pid:20011 Workerman[think] status 
+2026-07-28 11:28:24 pid:20018 Workerman[think] status 
+2026-07-28 11:34:06 pid:20032 Workerman[think] status 
+2026-08-01 16:38:02 pid:27948 Workerman[think] restart 
+2026-08-01 16:38:02 pid:27948 Workerman[think] is stopping ...
+2026-08-01 16:38:02 pid:20002 Workerman[think] stopping ...
+2026-08-01 16:38:02 pid:20002 Workerman[think] has been stopped
+2026-08-01 16:38:03 pid:27948 Workerman[think] stop success
+2026-08-01 16:39:07 pid:27957 Workerman[think] status 

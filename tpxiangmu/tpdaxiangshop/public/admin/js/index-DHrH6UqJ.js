@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";function r(){return e({url:"/BusinessSysset/getSettings",method:"post"})}function n(){return e({url:"/BusinessSysset/getMemberLevels",method:"post"})}function u(s){return e({url:"/BusinessSysset/save",method:"post",data:s})}export{n as a,r as g,u as s};

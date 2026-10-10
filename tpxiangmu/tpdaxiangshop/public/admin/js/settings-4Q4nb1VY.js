@@ -1,0 +1,1 @@
+import t from"./index-2CLEfjhr.js";import{d as e,W as o,X as r}from"./vue-vendor-BH3QE-KO.js";import"./index-CTO9TwcJ.js";import"./antd-vendor-BXeG7MAg.js";import"./utils-vendor-dR2luS_Z.js";import"./charts-vendor-CwCbZZ1s.js";const l=e({__name:"settings",setup(i){return(p,m)=>(r(),o(t))}});export{l as default};

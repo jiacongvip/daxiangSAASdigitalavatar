@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";function o(){return e({url:"/MendianSetApi/getInfo",method:"post"})}function r(t){return e({url:"/MendianSetApi/save",method:"post",data:t})}export{o as g,r as s};

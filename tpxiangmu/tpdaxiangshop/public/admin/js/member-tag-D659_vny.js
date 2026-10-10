@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";function r(t){return e({url:"/MemberTag/getList",method:"post",data:t||{}})}function o(t){return e({url:"/MemberTag/getDetail",method:"post",data:t})}function s(t){return e({url:"/MemberTag/save",method:"post",data:t})}function g(t){return e({url:"/MemberTag/del",method:"post",data:t})}export{o as a,g as d,r as g,s};

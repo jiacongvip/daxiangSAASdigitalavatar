@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>菜单样式测试 - 效果演示</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #0a0e27;
+      color: #fff;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #1890ff, #096dd9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 40px;
+    }
+
+    .demo-section {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .demo-title {
+      font-size: 20px;
+      margin-bottom: 20px;
+      color: #1890ff;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      height: 38px;
+      padding: 0 12px;
+      margin: 2px 8px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 12px;
+    }
+
+    .menu-icon {
+      font-size: 18px;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Hover 效果 */
+    .menu-item:hover {
+      background: linear-gradient(135deg, rgba(24, 144, 255, 0.15) 0%, rgba(24, 144, 255, 0.05) 100%);
+      box-shadow: 0 2px 8px rgba(24, 144, 255, 0.15);
+      transform: translateX(2px);
+      color: #fff;
+    }
+
+    .menu-item:hover .menu-icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    /* 选中效果 */
+    .menu-item.selected {
+      background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.35);
+      font-weight: 500;
+      color: #fff;
+    }
+
+    .menu-item.selected .menu-icon {
+      filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    }
+
+    /* 三级菜单效果 */
+    .menu-item.level-3 {
+      padding-left: 48px;
+      font-size: 13px;
+    }
+
+    .menu-item.level-3.selected {
+      border-left: 3px solid #40a9ff;
+      transform: translateX(3px);
+      font-weight: 600;
+    }
+
+    .description {
+      margin-top: 15px;
+      padding: 15px;
+      background: rgba(24, 144, 255, 0.1);
+      border-left: 3px solid #1890ff;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: #1890ff;
+      font-weight: 600;
+    }
+
+    .scroll-demo {
+      max-height: 300px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .scroll-demo::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .scroll-demo::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    .scroll-demo::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    .scroll-demo::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #1890ff, #096dd9);
+      color: #fff;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 10px 10px 10px 0;
+      transition: all 0.3s;
+      border: none;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4);
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 10px;
+    }
+
+    .status.success {
+      background: rgba(82, 196, 26, 0.2);
+      color: #52c41a;
+    }
+
+    .status.warning {
+      background: rgba(250, 173, 20, 0.2);
+      color: #faad14;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 菜单样式效果演示</h1>
+    <p class="subtitle">这是你的菜单样式的实际效果预览</p>
+
+    <!-- Hover 效果 -->
+    <div class="demo-section">
+      <h2 class="demo-title">✨ 1. Hover 效果（鼠标悬停）</h2>
+      <div class="menu-item" id="hover-demo">
+        <span class="menu-icon">📊</span>
+        <span>数据统计 - 鼠标移到这里试试</span>
+      </div>
+      <div class="description">
+        <strong>效果说明：</strong><br>
+        ✅ <span class="highlight">蓝色渐变背景</span>（rgba(24,144,255,0.15 → 0.05)）<br>
+        ✅ <span class="highlight">图标放大 1.2 倍 + 旋转 5 度</span><br>
+        ✅ <span class="highlight">向右平移 2px</span><br>
+        ✅ <span class="highlight">阴影效果</span>（0 2px 8px）
+      </div>
+    </div>
+
+    <!-- 选中效果 -->
+    <div class="demo-section">
+      <h2 class="demo-title">✅ 2. 选中效果（点击后）</h2>
+      <div class="menu-item selected">
+        <span class="menu-icon">📊</span>
+        <span>数据统计 - 已选中状态</span>
+      </div>
+      <div class="description">
+        <strong>效果说明：</strong><br>
+        ✅ <span class="highlight">醒目的蓝色渐变</span>（#1890ff → #096dd9）<br>
+        ✅ <span class="highlight">强烈阴影</span>（0 4px 12px）<br>
+        ✅ <span class="highlight">字体加粗</span>（font-weight: 500）<br>
+        ✅ <span class="highlight">图标发光效果</span>
+      </div>
+    </div>
+
+    <!-- 三级菜单效果 -->
+    <div class="demo-section">
+      <h2 class="demo-title">📂 3. 三级菜单选中效果</h2>
+      <div class="menu-item level-3 selected">
+        <span>商品管理 - 三级菜单选中</span>
+      </div>
+      <div class="description">
+        <strong>效果说明：</strong><br>
+        ✅ <span class="highlight">左侧蓝色边框</span>（3px）<br>
+        ✅ <span class="highlight">向右平移 3px</span><br>
+        ✅ <span class="highlight">字重更粗</span>（font-weight: 600）<br>
+        ✅ <span class="highlight">蓝色渐变背景 + 阴影</span>
+      </div>
+    </div>
+
+    <!-- 滚动效果 -->
+    <div class="demo-section">
+      <h2 class="demo-title">📜 4. 滚动条效果</h2>
+      <div class="scroll-demo">
+        <div class="menu-item">📊 数据统计</div>
+        <div class="menu-item">👥 会员管理</div>
+        <div class="menu-item">🛒 商品管理</div>
+        <div class="menu-item">📦 订单管理</div>
+        <div class="menu-item">🎁 营销管理</div>
+        <div class="menu-item">💰 财务管理</div>
+        <div class="menu-item">⚙️ 系统设置</div>
+        <div class="menu-item">📊 数据报表</div>
+        <div class="menu-item">👤 个人中心</div>
+        <div class="menu-item">🔔 消息通知</div>
+        <div class="menu-item">📝 内容管理</div>
+        <div class="menu-item">🏷️ 标签管理</div>
+        <div class="menu-item">📸 素材库</div>
+        <div class="menu-item">🎨 主题设置</div>
+      </div>
+      <div class="description">
+        <strong>效果说明：</strong><br>
+        ✅ <span class="highlight">6px 宽度滚动条</span><br>
+        ✅ <span class="highlight">半透明样式</span><br>
+        ✅ <span class="highlight">Hover 时高亮</span><br>
+        ✅ <span class="highlight">平滑滚动</span>
+      </div>
+    </div>
+
+    <!-- 对比说明 -->
+    <div class="demo-section">
+      <h2 class="demo-title">📊 效果对比</h2>
+      <table style="width: 100%; color: rgba(255,255,255,0.8); border-collapse: collapse;">
+        <tr style="background: rgba(24,144,255,0.1);">
+          <th style="padding: 12px; text-align: left; border-bottom: 2px solid #1890ff;">状态</th>
+          <th style="padding: 12px; text-align: left; border-bottom: 2px solid #1890ff;">原版</th>
+          <th style="padding: 12px; text-align: left; border-bottom: 2px solid #1890ff;">增强版</th>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 12px;">Hover</td>
+          <td style="padding: 12px; color: rgba(255,255,255,0.4);">无明显变化</td>
+          <td style="padding: 12px; color: #1890ff; font-weight: 600;">✨ 渐变背景 + 图标动画 + 平移 + 阴影</td>
+        </tr>
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <td style="padding: 12px;">选中</td>
+          <td style="padding: 12px; color: rgba(255,255,255,0.4);">简单背景色</td>
+          <td style="padding: 12px; color: #1890ff; font-weight: 600;">✨ 蓝色渐变 + 强阴影 + 加粗 + 发光</td>
+        </tr>
+        <tr>
+          <td style="padding: 12px;">滚动</td>
+          <td style="padding: 12px; color: rgba(255,255,255,0.4);">可能不滚动</td>
+          <td style="padding: 12px; color: #1890ff; font-weight: 600;">✨ 已修复 + 定制滚动条</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- 操作按钮 -->
+    <div class="demo-section">
+      <h2 class="demo-title">🚀 下一步</h2>
+      <button class="btn" onclick="window.location.href='/'">
+        返回主页面查看实际效果
+      </button>
+      <button class="btn" onclick="location.reload()">
+        刷新此页面
+      </button>
+      <div style="margin-top: 20px; padding: 20px; background: rgba(24,144,255,0.1); border-radius: 8px;">
+        <strong style="color: #1890ff;">💡 提示：</strong><br>
+        <span style="color: rgba(255,255,255,0.8);">
+          如果你在这个演示页面能看到所有效果，说明样式代码完全正常。<br>
+          请返回主页面（<code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px;">http://localhost:5173</code>），
+          按 <code style="background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 3px;">Ctrl + F5</code> 硬刷新，
+          就能看到同样的效果！
+        </span>
+      </div>
+    </div>
+
+    <!-- 状态检查 -->
+    <div class="demo-section">
+      <h2 class="demo-title">🔍 效果检查清单</h2>
+      <div style="line-height: 2;">
+        <div>
+          <input type="checkbox" id="check1" onchange="updateStatus()">
+          <label for="check1"> 能看到 Hover 时的蓝色渐变背景</label>
+          <span class="status success" style="display: none;" id="status1">✅ 正常</span>
+        </div>
+        <div>
+          <input type="checkbox" id="check2" onchange="updateStatus()">
+          <label for="check2"> 能看到 Hover 时图标的缩放旋转动画</label>
+          <span class="status success" style="display: none;" id="status2">✅ 正常</span>
+        </div>
+        <div>
+          <input type="checkbox" id="check3" onchange="updateStatus()">
+          <label for="check3"> 选中状态有醒目的蓝色渐变</label>
+          <span class="status success" style="display: none;" id="status3">✅ 正常</span>
+        </div>
+        <div>
+          <input type="checkbox" id="check4" onchange="updateStatus()">
+          <label for="check4"> 三级菜单有左侧蓝色边框</label>
+          <span class="status success" style="display: none;" id="status4">✅ 正常</span>
+        </div>
+        <div>
+          <input type="checkbox" id="check5" onchange="updateStatus()">
+          <label for="check5"> 滚动条可见且样式正确</label>
+          <span class="status success" style="display: none;" id="status5">✅ 正常</span>
+        </div>
+      </div>
+      <div id="final-status" style="margin-top: 20px; padding: 15px; border-radius: 8px; display: none;">
+        <!-- 动态显示 -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateStatus() {
+      const checks = [1, 2, 3, 4, 5];
+      let allChecked = true;
+      
+      checks.forEach(num => {
+        const checkbox = document.getElementById('check' + num);
+        const status = document.getElementById('status' + num);
+        
+        if (checkbox.checked) {
+          status.style.display = 'inline-block';
+        } else {
+          status.style.display = 'none';
+          allChecked = false;
+        }
+      });
+
+      const finalStatus = document.getElementById('final-status');
+      if (allChecked) {
+        finalStatus.style.display = 'block';
+        finalStatus.style.background = 'rgba(82, 196, 26, 0.2)';
+        finalStatus.style.borderLeft = '3px solid #52c41a';
+        finalStatus.innerHTML = `
+          <strong style="color: #52c41a;">🎉 完美！所有效果都正常！</strong><br>
+          <span style="color: rgba(255,255,255,0.8);">
+            样式系统工作正常。现在返回主页面（Ctrl + F5 硬刷新）就能看到相同效果！
+          </span>
+        `;
+      } else {
+        finalStatus.style.display = 'none';
+      }
+    }
+
+    // 添加交互演示
+    document.addEventListener('DOMContentLoaded', () => {
+      const hoverDemo = document.getElementById('hover-demo');
+      let isSelected = false;
+
+      hoverDemo.addEventListener('click', () => {
+        isSelected = !isSelected;
+        if (isSelected) {
+          hoverDemo.classList.add('selected');
+        } else {
+          hoverDemo.classList.remove('selected');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

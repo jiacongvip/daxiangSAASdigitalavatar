@@ -1,0 +1,183 @@
+{
+  "name": "zhuibaoagent",
+  "title": "一键追爆AI",
+  "description": "短视频追爆工作台插件，支持链接解析、步骤任务流、模型配置和模板管理。",
+  "version": "1.2.5",
+  "author": "天天善",
+  "icon": "robot",
+  "use_vue": 1,
+  "require": {
+    "php": ">=7.2",
+    "thinkphp": ">=6.0",
+    "mysql": ">=5.6"
+  },
+  "dependencies": [],
+  "menu": [
+    {
+      "name": "一键追爆AI",
+      "icon": "my-icon my-icon-ai",
+      "sort": 239,
+      "admin_only": 1,
+      "merchant_visible": 0,
+      "tuanzhang_visible": 0,
+      "auth_mode": 2,
+      "children": [
+        {
+          "name": "智能体管理",
+          "path": "ZhuibaoAgent/agents",
+          "vue_path": "/plugin/zhuibaoagent/agents",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 1
+        },
+        {
+          "name": "系统设置",
+          "path": "ZhuibaoAgent/systemsettings",
+          "vue_path": "/plugin/zhuibaoagent/system-settings",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 2
+        },
+        {
+          "name": "接口库",
+          "path": "ZhuibaoAgent/settings",
+          "vue_path": "/plugin/zhuibaoagent/settings",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 3
+        },
+        {
+          "name": "任务组",
+          "path": "ZhuibaoAgent/taskgroups",
+          "vue_path": "/plugin/zhuibaoagent/task-groups",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 4
+        },
+        {
+          "name": "任务记录",
+          "path": "ZhuibaoAgent/tasks",
+          "vue_path": "/plugin/zhuibaoagent/tasks",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 6
+        },
+        {
+          "name": "任务监控",
+          "path": "ZhuibaoAgent/taskmonitor",
+          "vue_path": "/plugin/zhuibaoagent/task-monitor",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 7
+        },
+        {
+          "name": "使用统计",
+          "path": "ZhuibaoAgent/stats",
+          "vue_path": "/plugin/zhuibaoagent/stats",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 8
+        },
+        {
+          "name": "默认资产",
+          "path": "ZhuibaoAgent/defaultassets",
+          "vue_path": "/plugin/zhuibaoagent/default-assets",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 9
+        },
+        {
+          "name": "套餐额度",
+          "path": "ZhuibaoAgent/credits",
+          "vue_path": "/plugin/zhuibaoagent/credits",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 10
+        },
+        {
+          "name": "订单明细",
+          "path": "ZhuibaoAgent/orders",
+          "vue_path": "/plugin/zhuibaoagent/orders",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 11
+        },
+        {
+          "name": "兑换码",
+          "path": "ZhuibaoAgent/redeemcodes",
+          "vue_path": "/plugin/zhuibaoagent/redeem-codes",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 12
+        },
+        {
+          "name": "会员额度",
+          "path": "ZhuibaoAgent/membercredits",
+          "vue_path": "/plugin/zhuibaoagent/member-credits",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 13
+        },
+        {
+          "name": "扣点规则",
+          "path": "ZhuibaoAgent/chargerules",
+          "vue_path": "/plugin/zhuibaoagent/charge-rules",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 14
+        },
+        {
+          "name": "用户端入口",
+          "path": "ZhuibaoAgent/portalentry",
+          "vue_path": "/plugin/zhuibaoagent/portal-entry",
+          "icon": "",
+          "auth_mode": 1,
+          "auth_data": "ZhuibaoAgent/*",
+          "sort": 15
+        }
+      ]
+    }
+  ],
+  "database": {
+    "tables": [
+      "zhuibao_provider_config",
+      "zhuibao_channel_provider_config",
+      "zhuibao_provider_mode",
+      "zhuibao_runtime_state",
+      "zhuibao_page_config",
+      "zhuibao_default_asset",
+      "zhuibao_task",
+      "zhuibao_graphic_page",
+      "zhuibao_task_group",
+      "zhuibao_agent",
+      "zhuibao_task_step",
+      "zhuibao_task_queue",
+      "zhuibao_publish_account",
+      "zhuibao_template",
+      "zhuibao_usage_stat",
+      "zhuibao_publish_log",
+      "zhuibao_credit_config",
+      "zhuibao_credit_rule",
+      "zhuibao_package",
+      "zhuibao_package_order",
+      "zhuibao_package_redeem_code",
+      "zhuibao_package_redeem_log",
+      "zhuibao_member_package",
+      "zhuibao_member_credit",
+      "zhuibao_credit_log"
+    ]
+  }
+}

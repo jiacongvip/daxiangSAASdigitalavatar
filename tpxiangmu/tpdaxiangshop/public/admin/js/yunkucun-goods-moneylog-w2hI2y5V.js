@@ -1,0 +1,1 @@
+import{r as o}from"./index-CTO9TwcJ.js";const u={getMeta(){return o({url:"/YunkucunGoodsMoneylogApi/getMeta",method:"post"})},getList(t){return o({url:"/YunkucunGoodsMoneylogApi/getList",method:"post",data:t})}};export{u as y};

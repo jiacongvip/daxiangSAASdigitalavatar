@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const o={getList:(t={})=>e({url:"/HotelList/getList",method:"POST",data:t}),getDetail:t=>e({url:"/HotelList/getDetail",method:"POST",data:t}),save:t=>e({url:"/HotelList/save",method:"POST",data:t}),delete:t=>e({url:"/HotelList/delete",method:"POST",data:t})};export{o as h};

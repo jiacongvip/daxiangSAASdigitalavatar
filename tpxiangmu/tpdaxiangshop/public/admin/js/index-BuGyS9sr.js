@@ -1,0 +1,1 @@
+import{d as o,a5 as a,o as r,a1 as s,X as n}from"./vue-vendor-BH3QE-KO.js";import{o as c}from"./export-task-Dd2MZObk.js";const p={class:"export-task-redirect"},k=o({__name:"index",setup(i){const e=a();return r(()=>{if(c(),window.history.state?.back){e.back();return}e.replace("/stats")}),(t,_)=>(n(),s("div",p,"正在打开下载列表..."))}});export{k as default};

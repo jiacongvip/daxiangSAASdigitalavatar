@@ -1,0 +1,1 @@
+import{r as o}from"./index-CTO9TwcJ.js";const p={getList(t){return o({url:"/ZhaopinApi/getOptionsList",method:"post",data:t})},save(t){return o({url:"/ZhaopinApi/saveOption",method:"post",data:t})},remove(t){return o({url:"/ZhaopinApi/delOption",method:"post",data:t})},setStatus(t){return o({url:"/ZhaopinApi/setOptionStatus",method:"post",data:t})}};export{p as o};

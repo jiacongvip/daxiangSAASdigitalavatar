@@ -1,0 +1,1 @@
+import o from"./index-BxhscR_w.js";import{d as r,W as t,X as e}from"./vue-vendor-BH3QE-KO.js";import"./index-CTO9TwcJ.js";import"./antd-vendor-BXeG7MAg.js";import"./utils-vendor-dR2luS_Z.js";import"./charts-vendor-CwCbZZ1s.js";import"./tuangou-product-vgG1_JhR.js";const f=r({__name:"product",setup(p){return(m,a)=>(e(),t(o))}});export{f as default};

@@ -1,0 +1,415 @@
+{
+  "package": "community-ce",
+  "version": "2026-10-10.8",
+  "scope": "community_open_source_digitalavatar_runtime",
+  "license": "Apache-2.0",
+  "description": "社区开源版：完整 digitalavatar 插件 + 插件运行时底座（Apache-2.0）。含系统配置(sysset)依赖与数字人异步 worker（CE 精简版 async:work）。不含老 HTML 后台、不含控制台/站点总控；Vue 只交 public/admin 编译产物；docker 不含 mysql/data。",
+  "clonedFrom": {
+    "manifest": "base-admin-core-backend",
+    "why": "与当前纯净版/交付打包同一套白名单思路；社区版收紧为显式 include，避免 appRuntimeExcludingDefaults 把 Console 与 admin/view 一并带出。",
+    "notUsing": [
+      "base-business-backend（商城业务过重，营销/支付/设计器默认不进社区第一期）"
+    ]
+  },
+  "preferredMode": {
+    "menuMode": "database",
+    "notes": [
+      "交付包默认应将 admin_system_config.menu_use_database 设为 1。",
+      "不要默认走 Menu.php 全量文件菜单，否则会暴露旧系统大面积业务入口。",
+      "打包器对 package!==base-admin-core-backend 时不会应用 excludeByDefault；本清单因此用显式白名单，而不是整棵 app/ 再排除。"
+    ]
+  },
+  "packagerNotes": {
+    "howCollectWorks": "community-ce 走 collectPackageFiles 的通用分支：include 下所有数组里的路径都会被拷贝。",
+    "excludeByDefaultIgnored": true,
+    "excludeByDefaultIgnoredReason": "excludeByDefault 仅在 package===base-admin-core-backend 且使用 appRuntimeExcludingDefaults 时生效。",
+    "cliExample": "cd tools/delivery-packager && npm run build -- --name community-ce --manifest community-ce --no-legacy --no-zip",
+    "uiNote": "控制台勾选插件时不要勾选任何商业插件；本 manifest 本身不带 plugin 字段，也不会自动扫入 app/plugin/*。",
+    "vueAdminSource": "只交付 public/admin 编译产物；digitalavatar 管理页在其中的 digitalavatar-*.js chunk。",
+    "dockerDataExcluded": "不要 include 整棵 docker/。只拷 nginx/php/supervisor 与 mysql/conf.d+init；mysql/data、redis/data 是本机运行时数据，compose 用的是 named volume，开源包不得带出。",
+    "vueCompiledNote": "现有 public/admin 为全量后台构建，压缩包内可能仍有 console/商业插件相关 JS chunk；已满足「无明文 Vue 源码」。若要编译期去掉 console，需另做 CE 构建入口后再刷新 public/admin。",
+    "primaryProduct": "digitalavatar + plugin runtime；构建时不要再 --plugin 叠加自动前端源码文件，Vue 一律用 public/admin。",
+    "pluginCenterSupport": "my_plugin 需要 BackstageApi + PluginCategoryRegistry（及 BackstageApi 的 common 依赖）。PluginMarket 社区版用 stub（见 docs/community-ce-stubs 与 staging 内 PluginMarket.php），避免 404 红字。",
+    "digitalavatarPortal": "用户 SPA 调 /website.php?s=portalapi/digitalavatar/<action>&platform=h5。本地预览需 ddwx_admin.endtime 未过期，且 digitalavatar_setting.portal_domain=127.0.0.1（或 URL 带 aid=1）。",
+    "ceAsyncWorkerOverlay": "不要拷贝源码完整 app/command/AsyncWork.php（硬依赖大量商城导出/升级类，社区包会直接崩）。打包后请用 docs/2026-10-10-社区版交付裁切/overlay/ 覆盖：app/command/AsyncWork.php 与 config/console.php（仅注册 async:work）。docker/supervisor/async-worker.conf 已在 dockerAndOps 中，容器内命令仍是 php think async:work。",
+    "syssetSupport": "系统配置页 /backstage/sysset 主接口为 BackstageApi/getSyssetInfo 与 saveSysset；地图列依赖 MapQuery::ensureH5MapKeyColumn；AI 配置依赖 AiNewapi；上传走 Upload + File。",
+    "legacyAdminPhpBridge": "Vue 管理员列表(#/user)仍走 /admin.php?s=/User/index（request baseURL=/admin.php），不是 adminapi。缺 public/admin.php 会直接 nginx 404 HTML。操作日志(#/backstage/plog)走 adminapi BackstageApi getPlog*，不依赖 admin.php。这里只带 User/Common/Base 桥接，不是整棵老 HTML 后台。"
+  },
+  "include": {
+    "rootRuntime": [
+      "tpxiangmu/tpdaxiangshop/composer.json",
+      "tpxiangmu/tpdaxiangshop/composer.lock",
+      "tpxiangmu/tpdaxiangshop/think",
+      "tpxiangmu/tpdaxiangshop/config.php",
+      "tpxiangmu/tpdaxiangshop/custom.php"
+    ],
+    "dockerAndOps": [
+      "tpxiangmu/tpdaxiangshop/docker-compose.yml",
+      "tpxiangmu/tpdaxiangshop/Dockerfile",
+      "tpxiangmu/tpdaxiangshop/docker/nginx",
+      "tpxiangmu/tpdaxiangshop/docker/php",
+      "tpxiangmu/tpdaxiangshop/docker/supervisor",
+      "tpxiangmu/tpdaxiangshop/docker/mysql/conf.d",
+      "tpxiangmu/tpdaxiangshop/docker/mysql/init",
+      "tpxiangmu/tpdaxiangshop/docker-start.sh",
+      "tpxiangmu/tpdaxiangshop/docker-import-db.sh"
+    ],
+    "appCore": [
+      "tpxiangmu/tpdaxiangshop/app/AppService.php",
+      "tpxiangmu/tpdaxiangshop/app/service.php",
+      "tpxiangmu/tpdaxiangshop/app/BaseController.php",
+      "tpxiangmu/tpdaxiangshop/app/Request.php",
+      "tpxiangmu/tpdaxiangshop/app/common.php",
+      "tpxiangmu/tpdaxiangshop/app/provider.php",
+      "tpxiangmu/tpdaxiangshop/app/middleware.php",
+      "tpxiangmu/tpdaxiangshop/app/ExceptionHandle.php"
+    ],
+    "config": [
+      "tpxiangmu/tpdaxiangshop/config"
+    ],
+    "routes": [
+      "tpxiangmu/tpdaxiangshop/route/app.php"
+    ],
+    "publicEntrypoints": [
+      "tpxiangmu/tpdaxiangshop/public/index.php",
+      "tpxiangmu/tpdaxiangshop/public/install.php",
+      "tpxiangmu/tpdaxiangshop/public/adminapi.php",
+      "tpxiangmu/tpdaxiangshop/public/.htaccess",
+      "tpxiangmu/tpdaxiangshop/public/nginx.htaccess",
+      "tpxiangmu/tpdaxiangshop/public/robots.txt",
+      "tpxiangmu/tpdaxiangshop/public/favicon.ico"
+    ],
+    "adminApiCoreControllers": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Common.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Login.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/VueMenu.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Upload.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/Plugin.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/PluginManagerApi.php"
+    ],
+    "adminApiRecommendedControllers": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminPluginTopMenu.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminMenuApi.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminUserApi.php"
+    ],
+    "adminCommonCore": [
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Common.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Menu.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/MenuDatabase.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Pic.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginMenu.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginMigration.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginTopMenuConfig.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/System.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common.php"
+    ],
+    "adminCommonRecommended": [
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginBusinessAuth.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/SystemConfig.php"
+    ],
+    "appSharedRuntime": [
+      "tpxiangmu/tpdaxiangshop/app/common"
+    ],
+    "vueAdminCompiled": [
+      "tpxiangmu/tpdaxiangshop/public/admin"
+    ],
+    "digitalavatarPlugin": [
+      "tpxiangmu/tpdaxiangshop/app/plugin/digitalavatar"
+    ],
+    "digitalavatarAdminApi": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/AdminapiDigitalAvatar.php"
+    ],
+    "digitalavatarLoginSupport": [
+      "tpxiangmu/tpdaxiangshop/app/admin/common/ConsoleAuth.php"
+    ],
+    "digitalavatarUserSpa": [
+      "tpxiangmu/tpdaxiangshop/public/portal/digitalavatar"
+    ],
+    "pluginCenterSupport": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/BackstageApi.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginCategoryRegistry.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginDashboardRegistry.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PageVisitStatService.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/MemberOpenidBindService.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/WithdrawFeeRewardService.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/WithdrawMultiple.php"
+    ],
+    "digitalavatarPortalApi": [
+      "tpxiangmu/tpdaxiangshop/public/website.php",
+      "tpxiangmu/tpdaxiangshop/app/website/route/app.php",
+      "tpxiangmu/tpdaxiangshop/app/website/controller/PortalApiDigitalAvatar.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/ApiBase.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/ApiCommon.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/SimulateLoginTokenService.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Member.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Sms.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Wechat.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/H5ShareMetadata.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/model/Member.php"
+    ],
+    "syssetSupport": [
+      "tpxiangmu/tpdaxiangshop/app/admin/common/MapQuery.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/AiNewapi.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/File.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/Alipay.php"
+    ],
+    "digitalavatarAsyncRuntime": [
+      "tpxiangmu/tpdaxiangshop/app/admin/common/AsyncWorkerLogService.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/model/Payorder.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoProviderService.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoAvatarVoiceApi.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoImageApi.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoNiwaModelCatalog.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoInstaller.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoRuntimeService.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoMediaLimitService.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoOutputFileName.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/common/ZhuibaoCreditService.php",
+      "tpxiangmu/tpdaxiangshop/app/plugin/zhuibaoagent/plugin.json"
+    ],
+    "legacyAdminPhpBridge": [
+      "tpxiangmu/tpdaxiangshop/public/admin.php",
+      "tpxiangmu/tpdaxiangshop/public/website_entry_dispatch.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/Base.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/Common.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/User.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller/UserGroup.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/view/user",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/PluginHexiaoRegistry.php"
+    ]
+  },
+  "intentionallyOmittedFromInclude": {
+    "oldHtmlAdmin": [
+      "tpxiangmu/tpdaxiangshop/public/admin.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/controller",
+      "tpxiangmu/tpdaxiangshop/app/admin/view",
+      "tpxiangmu/tpdaxiangshop/public/static/admin",
+      "tpxiangmu/tpdaxiangshop/public/static/layui"
+    ],
+    "consoleAndPortal": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleBase.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleUser.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleSystem.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleChannelAdmin.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleChannelSubUser.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleDomain.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleDoc.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleHelp.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleMaintenance.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleMianzhen.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleOther.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsolePluginTopMenu.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleWebsiteAiStudio.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleDesigner.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/ConsoleTemplate.php",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/PluginLicenseApi.php",
+      "tpxiangmu/tpdaxiangshop/app/admin/common/ConsoleAuth.php",
+      "tpxiangmu/tpdaxiangshop/public/portal",
+      "tphouduan-vueadmin/portal",
+      "tphouduan-vueadmin/dist-portal",
+      "tphouduan-vueadmin/vite.portal.config.ts",
+      "tphouduan-vueadmin/src/portal",
+      "tphouduan-vueadmin/src/portal-main.ts"
+    ],
+    "commercialPluginsAndPayments": [
+      "tpxiangmu/tpdaxiangshop/app/plugin",
+      "tpxiangmu/tpdaxiangshop/app/website",
+      "tpxiangmu/tpdaxiangshop/public/h5",
+      "tpxiangmu/tpdaxiangshop/public/business.php",
+      "tpxiangmu/tpdaxiangshop/public/website.php",
+      "支付实装与商业插件：hangbangpay / cpcnpay / bankremitpay / shanpay / carouselpay / dashiji 等一律不进社区包"
+    ],
+    "heavyBusinessFromBaseBusiness": [
+      "base-business-backend 整包（会员深度营销、分销、设计器全家桶、微信实装等）"
+    ],
+    "localRuntimeData": [
+      "tpxiangmu/tpdaxiangshop/docker/mysql/data",
+      "tpxiangmu/tpdaxiangshop/docker/redis/data",
+      "tpxiangmu/tpdaxiangshop/docker/redis"
+    ],
+    "vueAdminSecondaryTrimPending": [
+      "compiled public/admin may still contain ConsoleLayout / console / commercial plugin chunks (minified JS), because current Vite build is full admin SPA — no plaintext .vue source shipped"
+    ],
+    "vueAdminSourceNotShipped": [
+      "tphouduan-vueadmin/src",
+      "tphouduan-vueadmin/package.json",
+      "tphouduan-vueadmin/vite.config.ts",
+      "tphouduan-vueadmin/index.html",
+      "tphouduan-vueadmin/public",
+      "tphouduan-vueadmin/dist",
+      "tphouduan-vueadmin/dist-portal",
+      "tphouduan-vueadmin/portal"
+    ],
+    "softDepsNotBundled": [
+      "app/plugin/zhuibao*",
+      "zhuibao_member_avatar_profile / zhuibao_member_voice_profile（软依赖，缺表则导入降级）"
+    ],
+    "digitalavatarUserApiDeferred": [
+      "app/website/view/**（官网模板不进 CE）",
+      "PortalApiZhuibaoAgent / PortalApiGeoOptimizer"
+    ],
+    "onlinePluginMarket": [
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/PluginMarket.php (主仓在线市场；CE 用 stub)",
+      "tpxiangmu/tpdaxiangshop/app/adminapi/controller/PluginMarketApi.php"
+    ],
+    "digitalavatarUserApiDeferredNote": [
+      "已于 2026-10-10.6 纳入 digitalavatarPortalApi（website.php + PortalApiDigitalAvatar + ApiCommon 链）。",
+      "仍不带 PortalApiZhuibao/Geo 与 website view 整站模板。"
+    ],
+    "fullMallAsyncWork": "源码 AsyncWork.php 含商城导出/升级/多插件队列，社区版改用 overlay 精简 worker。",
+    "zhuibaoagentFullPlugin": "只带 zhuibaoagent/common 下数字人执行所需 API 类，不装追爆后台菜单/前端。",
+    "fullHtmlAdminViews": "不交付整棵 app/admin/view，仅 user 视图给非 Ajax 兜底；菜单仍以数据库精简为准。"
+  },
+  "samplePlugins": {
+    "primary": "digitalavatar",
+    "note": "主产品；hello-demo/notice-board 不再作为第一优先级示例。",
+    "deferredExamples": [
+      "hello-demo",
+      "notice-board"
+    ]
+  },
+  "phase1MinimalShopDeferred": {
+    "status": "omitted_for_now",
+    "reason": "社区版目标改为 digitalavatar + runtime，商城壳非必需。"
+  },
+  "runtimeDependencies": {
+    "vendorMode": [
+      "tpxiangmu/tpdaxiangshop/vendor"
+    ],
+    "buildMode": [
+      "在交付/开源环境执行 composer install",
+      "必须保留 composer.json 与 composer.lock"
+    ],
+    "notes": [
+      "开源包建议默认不带 vendor（体积与许可证 NOTICE 需另处理）；本地试裁可加 --vendor。",
+      "Upload.php / Pic.php 依赖图片与对象存储 SDK 时，按实际去留更新本说明。"
+    ]
+  },
+  "requiredTables": [
+    {
+      "name": "admin_user",
+      "owner": "base_package",
+      "reason": "后台登录、用户信息、权限上下文"
+    },
+    {
+      "name": "admin_loginlog",
+      "owner": "base_package",
+      "reason": "登录日志"
+    },
+    {
+      "name": "admin",
+      "owner": "base_package",
+      "reason": "站点级存储与额度配置"
+    },
+    {
+      "name": "admin_set",
+      "owner": "base_package",
+      "reason": "站点 aid 集合，插件安装时遍历站点"
+    },
+    {
+      "name": "sysset",
+      "owner": "base_package",
+      "reason": "登录页品牌信息、远程存储配置（开源前需脱敏）"
+    },
+    {
+      "name": "admin_menu",
+      "owner": "base_package",
+      "reason": "数据库菜单模式基础菜单"
+    },
+    {
+      "name": "admin_user_group",
+      "owner": "base_package",
+      "reason": "权限组与 auth_data"
+    },
+    {
+      "name": "admin_system_config",
+      "owner": "base_package",
+      "reason": "menu_use_database 等系统开关"
+    },
+    {
+      "name": "admin_upload",
+      "owner": "base_package",
+      "reason": "素材库与上传记录"
+    },
+    {
+      "name": "admin_upload_group",
+      "owner": "base_package",
+      "reason": "素材分组"
+    },
+    {
+      "name": "admin_plugin_menu",
+      "owner": "base_package",
+      "reason": "插件菜单注册"
+    },
+    {
+      "name": "admin_plugin_version",
+      "owner": "base_package",
+      "reason": "插件安装版本与 use_vue 标记"
+    }
+  ],
+  "optionalTables": [
+    {
+      "name": "admin_plugin_top_menu",
+      "owner": "base_package",
+      "requiredWhen": "需要站点级插件提升为一级菜单"
+    },
+    {
+      "name": "plugin_business_auth",
+      "owner": "base_package",
+      "requiredWhen": "需要商家级插件权限分配"
+    },
+    {
+      "name": "plog",
+      "owner": "base_package",
+      "requiredWhen": "保留操作日志"
+    }
+  ],
+  "writablePaths": [
+    "tpxiangmu/tpdaxiangshop/runtime/cache",
+    "tpxiangmu/tpdaxiangshop/runtime/log",
+    "tpxiangmu/tpdaxiangshop/runtime/session",
+    "tpxiangmu/tpdaxiangshop/public/upload"
+  ],
+  "excludeByDefault": [
+    "tpxiangmu/tpdaxiangshop/app/plugin",
+    "tpxiangmu/tpdaxiangshop/app/website",
+    "tpxiangmu/tpdaxiangshop/public/business.php",
+    "tpxiangmu/tpdaxiangshop/public/website.php",
+    "tpxiangmu/tpdaxiangshop/public/portal",
+    "tpxiangmu/tpdaxiangshop/public/h5",
+    "tpxiangmu/tpdaxiangshop/public/admin.php",
+    "tpxiangmu/tpdaxiangshop/app/admin/view",
+    "tpxiangmu/tpdaxiangshop/runtime",
+    "tpxiangmu/tpdaxiangshop/docs",
+    "tphouduan-vueadmin/portal",
+    "tphouduan-vueadmin/dist-portal",
+    "tphouduan-vueadmin/src/portal",
+    "tpxiangmu/tpdaxiangshop/docker/mysql/data",
+    "tpxiangmu/tpdaxiangshop/docker/redis/data",
+    "tphouduan-vueadmin/src/views/console",
+    "tphouduan-vueadmin/src/api/console",
+    "tphouduan-vueadmin/src/layouts/ConsoleLayout.vue",
+    "tphouduan-vueadmin",
+    "tphouduan-vueadmin/src",
+    "tpxiangmu/tpdaxiangshop/public/portal/digitalavatar_backup_20261005_234023",
+    "tpxiangmu/tpdaxiangshop/public/portal/digitalavatar._build_backup_20261007_161853"
+  ],
+  "desensitizeBeforePublish": [
+    "config.php / custom.php / sysset 中的真实密钥与域名改为 example",
+    "新仓全新提交，不要 mirror 私有仓完整 Git 历史",
+    "提供虚构 demo.sql，不带真实商家库",
+    "Vue Admin views/api 仍含大量商业插件页面引用，公开前需二次裁切或编译精简包"
+  ],
+  "notes": [
+    "相对纯净版 base-admin-core-backend：去掉 optionalConsoleLicenseLayer、optionalLegacyCompat，并改用显式白名单而非 app 整层拷贝。",
+    "相对 base-business-backend：第一期不叠加，商城壳延后。",
+    "示例插件 hello-demo / notice-board 尚未创建，本文件不写假路径。",
+    "UniApp 手机端第二期再做，本清单不含 tiantianshandeqianduan。",
+    "对照文档：docs/社区版裁切清单-v0.1.md 与 docs/2026-10-10-社区版交付裁切/README.md。",
+    "2026-10-10.2：dockerAndOps 改为显式子目录，不再拷 docker/mysql/data、docker/redis。",
+    "2026-10-10.3：vueAdminShell 源码改为 vueAdminCompiled=public/admin；不交付 tphouduan-vueadmin/src。",
+    "2026-10-10.4：主产品改为完整 digitalavatar；加入插件目录、Adminapi 封装、ConsoleAuth、用户 SPA；弱化商城壳。",
+    "2026-10-10.5：补齐插件中心依赖 BackstageApi/PluginCategoryRegistry 等；PluginMarket 用社区 stub。",
+    "2026-10-10.6：补齐用户端 website.php / PortalApiDigitalAvatar / ApiCommon 依赖链。"
+  ]
+}

@@ -1,0 +1,1 @@
+import{r as t}from"./index-CTO9TwcJ.js";const o={getList(e){return t({url:"/ZhaopinApi/getResumeList",method:"post",data:e})},getDetail(e){return t({url:"/ZhaopinApi/getResumeDetail",method:"post",data:e})},save(e){return t({url:"/ZhaopinApi/saveResume",method:"post",data:e})},remove(e){return t({url:"/ZhaopinApi/deleteResume",method:"post",data:e})}};export{o as r};

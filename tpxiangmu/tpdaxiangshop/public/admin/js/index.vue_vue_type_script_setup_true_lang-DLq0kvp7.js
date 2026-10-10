@@ -1,0 +1,1 @@
+import{d as o,ab as t,W as r,X as a,u as s}from"./vue-vendor-BH3QE-KO.js";import{P as n}from"./index-DD0GUyTZ.js";const m=o({__name:"index",setup(p){const e=t();return(c,u)=>(a(),r(n,{key:s(e).fullPath,"poster-type":"kanjia"}))}});export{m as _};

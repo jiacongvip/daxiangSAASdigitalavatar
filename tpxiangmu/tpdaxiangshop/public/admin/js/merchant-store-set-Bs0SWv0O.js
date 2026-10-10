@@ -1,0 +1,1 @@
+import{s as e}from"./index-CTO9TwcJ.js";function o(){return e({url:"/MerchantStoreSet/getInfo",method:"get"})}function n(t){return e({url:"/MerchantStoreSet/save",method:"post",data:t})}export{o as g,n as s};

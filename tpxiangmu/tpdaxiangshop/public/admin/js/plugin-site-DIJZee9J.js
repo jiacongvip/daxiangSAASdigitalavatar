@@ -1,0 +1,1 @@
+import{s as t}from"./index-CTO9TwcJ.js";const n={getList:()=>t.get("/Plugin/index"),toggleStatus:e=>t.post("/Plugin/toggleStatus",e),getMenuTree:e=>t.get("/Plugin/getMenuTree",{params:{plugin_name:e}})};export{n as s};

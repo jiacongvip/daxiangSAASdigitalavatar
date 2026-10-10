@@ -1,0 +1,521 @@
+{
+  "name": "digitalavatar",
+  "title": "AI数字人工作台",
+  "description": "AI数字人、语音克隆、音频合成、视频生成和图片生成 SaaS 工作台。",
+  "version": "0.7.8",
+  "author": "天天善",
+  "icon": "robot",
+  "use_vue": 1,
+  "require": {
+    "php": ">=7.2",
+    "thinkphp": ">=6.0",
+    "mysql": ">=5.6"
+  },
+  "dependencies": [],
+  "menu": [
+    {
+      "name": "AI数字人工作台",
+      "icon": "my-icon my-icon-ai",
+      "sort": 242,
+      "admin_only": 0,
+      "merchant_visible": 1,
+      "tuanzhang_visible": 0,
+      "auth_mode": 2,
+      "children": [
+        {
+          "name": "工作台",
+          "path": "DigitalAvatar/workbench",
+          "vue_path": "/plugin/digitalavatar/workbench",
+          "icon": "",
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "auth_mode": 1,
+          "auth_data": "AdminapiDigitalAvatar/*",
+          "sort": 1
+        },
+        {
+          "name": "基础配置",
+          "icon": "",
+          "sort": 2,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "系统设置",
+              "path": "DigitalAvatar/settings",
+              "vue_path": "/plugin/digitalavatar/settings",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "OEM / 代理",
+              "path": "DigitalAvatar/oem",
+              "vue_path": "/plugin/digitalavatar/oem",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            },
+            {
+              "name": "首页广告",
+              "path": "DigitalAvatar/ads",
+              "vue_path": "/plugin/digitalavatar/ads",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 3
+            },
+            {
+              "name": "侧栏菜单",
+              "path": "DigitalAvatar/sidebarMenus",
+              "vue_path": "/plugin/digitalavatar/sidebar-menus",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 4
+            },
+            {
+              "name": "公共数字人",
+              "path": "DigitalAvatar/publicAvatars",
+              "vue_path": "/plugin/digitalavatar/public-avatars",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 5
+            },
+            {
+              "name": "公共声音",
+              "path": "DigitalAvatar/publicVoices",
+              "vue_path": "/plugin/digitalavatar/public-voices",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 5
+            }
+          ]
+        },
+        {
+          "name": "接口配置",
+          "icon": "",
+          "sort": 3,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "提供商配置",
+              "path": "DigitalAvatar/providers",
+              "vue_path": "/plugin/digitalavatar/providers",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "模型管理",
+              "path": "DigitalAvatar/models",
+              "vue_path": "/plugin/digitalavatar/models",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            },
+            {
+              "name": "每日额度",
+              "path": "DigitalAvatar/chargeRules",
+              "vue_path": "/plugin/digitalavatar/charge-rules",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 3
+            },
+            {
+              "name": "Agent作图技能",
+              "path": "DigitalAvatar/imageAgentSkills",
+              "vue_path": "/plugin/digitalavatar/image-agent-skills",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 4
+            }
+          ]
+        },
+        {
+          "name": "套餐配置",
+          "icon": "",
+          "sort": 4,
+          "admin_only": 0,
+          "merchant_visible": 1,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "会员套餐",
+              "path": "DigitalAvatar/packages",
+              "vue_path": "/plugin/digitalavatar/packages",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "加油包充值",
+              "path": "DigitalAvatar/boostPacks",
+              "vue_path": "/plugin/digitalavatar/boost-packs",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            },
+            {
+              "name": "兑换码",
+              "path": "DigitalAvatar/redeemCodes",
+              "vue_path": "/plugin/digitalavatar/redeem-codes",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 3
+            }
+          ]
+        },
+        {
+          "name": "营销配置",
+          "icon": "",
+          "sort": 5,
+          "admin_only": 0,
+          "merchant_visible": 1,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "签到设置",
+              "path": "DigitalAvatar/checkinSet",
+              "vue_path": "/plugin/digitalavatar/checkin-set",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "签到记录",
+              "path": "DigitalAvatar/checkinLogs",
+              "vue_path": "/plugin/digitalavatar/checkin-logs",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            },
+            {
+              "name": "拉新设置",
+              "path": "DigitalAvatar/inviteSet",
+              "vue_path": "/plugin/digitalavatar/invite-set",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 3
+            },
+            {
+              "name": "拉新记录",
+              "path": "DigitalAvatar/inviteLogs",
+              "vue_path": "/plugin/digitalavatar/invite-logs",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 4
+            }
+          ]
+        },
+        {
+          "name": "用户管理",
+          "icon": "",
+          "sort": 6,
+          "admin_only": 0,
+          "merchant_visible": 1,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "会员额度",
+              "path": "DigitalAvatar/memberCredits",
+              "vue_path": "/plugin/digitalavatar/member-credits",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "用户端入口",
+              "path": "DigitalAvatar/portalEntry",
+              "vue_path": "/plugin/digitalavatar/portal-entry",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            }
+          ]
+        },
+        {
+          "name": "任务管理",
+          "icon": "",
+          "sort": 7,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "任务管理",
+              "path": "DigitalAvatar/tasks",
+              "vue_path": "/plugin/digitalavatar/tasks",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            }
+          ]
+        },
+        {
+          "name": "社区管理",
+          "icon": "",
+          "sort": 72,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "灵感管理",
+              "path": "DigitalAvatar/inspires",
+              "vue_path": "/plugin/digitalavatar/inspires",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "评论管理",
+              "path": "DigitalAvatar/inspireComments",
+              "vue_path": "/plugin/digitalavatar/inspire-comments",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            }
+          ]
+        },
+        {
+          "name": "财务管理",
+          "icon": "",
+          "sort": 8,
+          "admin_only": 0,
+          "merchant_visible": 1,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "额度流水",
+              "path": "DigitalAvatar/creditLogs",
+              "vue_path": "/plugin/digitalavatar/credit-logs",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "订单管理",
+              "path": "DigitalAvatar/packageOrders",
+              "vue_path": "/plugin/digitalavatar/package-orders",
+              "icon": "",
+              "admin_only": 0,
+              "merchant_visible": 1,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            },
+            {
+              "name": "提现管理",
+              "path": "DigitalAvatar/withdraws",
+              "vue_path": "/plugin/digitalavatar/withdraws",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 3
+            },
+            {
+              "name": "团队长分佣等级管理",
+              "path": "DigitalAvatar/commissionLevels",
+              "vue_path": "/plugin/digitalavatar/commission-levels",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 4
+            }
+          ]
+        },
+        {
+          "name": "发票管理",
+          "path": "DigitalAvatar/invoices",
+          "vue_path": "/plugin/digitalavatar/invoices",
+          "icon": "",
+          "admin_only": 0,
+          "merchant_visible": 1,
+          "auth_mode": 1,
+          "auth_data": "AdminapiDigitalAvatar/*",
+          "sort": 90
+        },
+        {
+          "name": "管理员管理",
+          "icon": "",
+          "sort": 91,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "管理员角色",
+              "path": "DigitalAvatar/adminRoles",
+              "vue_path": "/plugin/digitalavatar/admin-roles",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            },
+            {
+              "name": "管理员管理",
+              "path": "DigitalAvatar/admins",
+              "vue_path": "/plugin/digitalavatar/admins",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 2
+            }
+          ]
+        },
+        {
+          "name": "代理管理",
+          "icon": "",
+          "sort": 92,
+          "admin_only": 1,
+          "merchant_visible": 0,
+          "tuanzhang_visible": 0,
+          "auth_mode": 2,
+          "children": [
+            {
+              "name": "代理列表",
+              "path": "DigitalAvatar/agents",
+              "vue_path": "/plugin/digitalavatar/agents",
+              "icon": "",
+              "admin_only": 1,
+              "merchant_visible": 0,
+              "auth_mode": 1,
+              "auth_data": "AdminapiDigitalAvatar/*",
+              "sort": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "database": {
+    "tables": [
+      "digitalavatar_setting",
+      "digitalavatar_ad",
+      "digitalavatar_image_skill",
+      "digitalavatar_provider_config",
+      "digitalavatar_model",
+      "digitalavatar_model_charge_rule",
+      "digitalavatar_daily_quota_rule",
+      "digitalavatar_daily_quota_usage",
+      "digitalavatar_public_avatar",
+      "digitalavatar_public_voice",
+      "digitalavatar_member_avatar",
+      "digitalavatar_member_voice",
+      "digitalavatar_member_credit",
+      "digitalavatar_credit_log",
+      "digitalavatar_package",
+      "digitalavatar_credit_lot",
+      "digitalavatar_package_order",
+      "digitalavatar_invoice",
+      "digitalavatar_redeem_code",
+      "digitalavatar_redeem_log",
+      "digitalavatar_task",
+      "digitalavatar_asset",
+      "digitalavatar_agent_session",
+      "digitalavatar_checkin_set",
+      "digitalavatar_checkin_log",
+      "digitalavatar_invite_set",
+      "digitalavatar_invite_log",
+      "digitalavatar_inspire_category",
+      "digitalavatar_inspire",
+      "digitalavatar_inspire_like",
+      "digitalavatar_inspire_comment",
+      "digitalavatar_inspire_fav",
+      "digitalavatar_inspire_follow",
+      "digitalavatar_commission_level",
+      "digitalavatar_withdraw",
+      "digitalavatar_admin_role",
+      "digitalavatar_admin_user",
+      "digitalavatar_agent"
+    ]
+  }
+}

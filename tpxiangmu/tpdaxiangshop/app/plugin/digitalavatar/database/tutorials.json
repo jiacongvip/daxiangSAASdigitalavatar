@@ -1,0 +1,118 @@
+{
+  "category": {
+    "name": "AI数字人工作台教程",
+    "type": 2,
+    "description": "配置 AI 数字人工作台的服务商、可选模型、模型扣点、创作点套餐和用户端入口。",
+    "sort": 50
+  },
+  "items": [
+    {
+      "title": "配置系统设置",
+      "description": "<h3>配置 AI 数字人系统设置</h3><p>进入 <b>系统设置</b>，设置产品标题、功能开关、注册赠送创作点、任务并发上限和 Portal 静态目录。</p>",
+      "link_url": "/plugin/digitalavatar/settings",
+      "link_type": 1,
+      "check_type": 2,
+      "check_table": "digitalavatar_setting",
+      "check_field": "id",
+      "check_condition": "{\"condition\":\"count>0\"}",
+      "weight": 30,
+      "sort": 100
+    },
+    {
+      "title": "配置 AI 提供商",
+      "description": "<h3>配置 AI 提供商</h3><ol><li>进入「提供商配置」，填写服务地址和接口密钥。</li><li>启用配置并测试连接。</li><li>密钥只保存在服务端，不会下发到用户端。</li></ol>",
+      "link_url": "/plugin/digitalavatar/providers",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 25,
+      "sort": 90
+    },
+    {
+      "title": "配置可选择模型和扣点",
+      "description": "<h3>配置用户端模型</h3><ol><li>进入「模型管理」，新增数字人、声音、视频或图片模型。</li><li>填写用户能看懂的模型名称，选择已配置的提供商。</li><li>在「每次扣点」直接填写该模型使用一次扣除的创作点。</li><li>启用模型并按需设置为该类型默认模型。</li></ol><p>用户端会自动显示启用的模型，并可直接点击选择；模型编码只用于服务商识别。</p>",
+      "link_url": "/plugin/digitalavatar/models",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 30,
+      "sort": 85
+    },
+    {
+      "title": "设置每日额度规则",
+      "description": "<h3>设置每日额度</h3><p>需要给某个模型设置每日免费使用次数时，进入「计费规则」的每日额度规则，填写模型编码和每日单位数；不设置则只按模型扣点。</p>",
+      "link_url": "/plugin/digitalavatar/charge-rules",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 20,
+      "sort": 80
+    },
+    {
+      "title": "配置创作点套餐",
+      "description": "<h3>配置创作点套餐</h3><ol><li>进入「套餐管理」新增创作点套餐。</li><li>填写创作点数量、售价和有效期。</li><li>上架后，用户可在用户端购买套餐补充余额。</li></ol>",
+      "link_url": "/plugin/digitalavatar/packages",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 20,
+      "sort": 75
+    },
+    {
+      "title": "生成兑换码和查看套餐订单",
+      "description": "<h3>兑换码与订单</h3><ol><li>进入「兑换码」批量生成充值卡，或指定一张兑换码。</li><li>用户在电脑端工作台右侧兑换入口输入卡密后到账。</li><li>进入「套餐订单」核对支付和创作点发放；已支付未发放时可补结算。</li></ol>",
+      "link_url": "/plugin/digitalavatar/redeem-codes",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 18,
+      "sort": 72
+    },
+    {
+      "title": "配置每日签到",
+      "description": "<h3>配置智能签到</h3><ol><li>进入「签到设置」，开启签到并填写每日奖励创作点、奖励有效期。</li><li>设置连续签到天数和额外奖励，例如连续 3 / 7 / 15 天额外发放。</li><li>用户在电脑端签到后，奖励会进入创作点批次，到期自动清空。</li><li>在「签到记录」查看会员签到和奖励明细。</li></ol>",
+      "link_url": "/plugin/digitalavatar/checkin-set",
+      "link_type": 1,
+      "check_type": 2,
+      "check_table": "digitalavatar_checkin_set",
+      "check_field": "enabled",
+      "check_condition": "{\"condition\":\"eq\",\"value\":1}",
+      "weight": 18,
+      "sort": 73
+    },
+    {
+      "title": "配置邀请拉新",
+      "description": "<h3>配置邀请好友拉新奖励</h3><ol><li>进入「拉新设置」，开启拉新并填写邀请人奖励创作点和奖励有效期。</li><li>可同时给新用户发放见面礼，并设置每日/累计拉新上限。</li><li>用户复制邀请链接，好友注册成功后自动绑定并发放奖励，到期自动清空。</li><li>在「拉新记录」查看邀请绑定和奖励明细。</li></ol>",
+      "link_url": "/plugin/digitalavatar/invite-set",
+      "link_type": 1,
+      "check_type": 2,
+      "check_table": "digitalavatar_invite_set",
+      "check_field": "enabled",
+      "check_condition": "{\"condition\":\"eq\",\"value\":1}",
+      "weight": 18,
+      "sort": 72
+    },
+    {
+      "title": "配置 OEM 和代理端",
+      "description": "<h3>OEM / 代理</h3><p>进入「OEM / 代理」，配置电脑端品牌标题、Logo、主色和客服信息。开启代理后，商家后台可管理兑换码、套餐订单和会员额度。</p>",
+      "link_url": "/plugin/digitalavatar/oem",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 16,
+      "sort": 71
+    },
+    {
+      "title": "发布用户端入口",
+      "description": "<h3>发布用户端入口</h3><p>进入「用户端入口」复制带 aid 参数的地址并发布给用户。用户登录后即可选择平台提供的模型、数字人和声音，并查看任务及额度。</p>",
+      "link_url": "/plugin/digitalavatar/portal-entry",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 20,
+      "sort": 70
+    },
+    {
+      "title": "查看任务和额度流水",
+      "description": "<h3>日常运营</h3><ol><li>在「任务管理」查看排队、运行、完成和失败任务。</li><li>在「会员额度」查看或调整用户创作点。</li><li>在「额度流水」核对发放、冻结、扣除和退回记录。</li></ol>",
+      "link_url": "/plugin/digitalavatar/tasks",
+      "link_type": 1,
+      "check_type": 4,
+      "weight": 15,
+      "sort": 60
+    }
+  ]
+}

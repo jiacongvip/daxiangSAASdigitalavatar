@@ -1,0 +1,1 @@
+import{bX as t}from"./antd-vendor-BXeG7MAg.js";const u=(n,r="-")=>{const i=Number(n||0);return!Number.isFinite(i)||i<=0?r:t.unix(i).format("YYYY-MM-DD HH:mm:ss")},m=n=>{const r=Number(n||0);return!Number.isFinite(r)||r<=0?null:t.unix(r)},s=n=>n?n.unix():0;export{m as a,u as f,s as t};

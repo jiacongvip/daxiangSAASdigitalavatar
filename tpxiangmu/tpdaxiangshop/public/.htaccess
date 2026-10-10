@@ -1,0 +1,66 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # 禁止访问收银台前端源码目录（src/node_modules/package.json 等），线上只需 /cashier/index.html 与 /cashier/static/
+    RewriteRule ^cashier/cashier/ - [F,L]
+
+    # 禁止访问运行日志/缓存目录（index.php 入口下支付日志会写入 public/runtime/log/）
+    RewriteRule ^runtime/(log|cache|temp|session)/ - [F,L]
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Vue 管理后台 SPA 路由兜底
+    RewriteCond %{REQUEST_URI} ^/admin/
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^admin/ /admin/index.html [L]
+
+    # ThinkPHP 多入口兼容：admin.php / adminapi.php / business.php / website.php / buyshop.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^admin\.php/(.*)$ admin.php?s=/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^adminapi\.php/(.*)$ adminapi.php?s=/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^business\.php/(.*)$ business.php?s=/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^website\.php/(.*)$ website.php?s=/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^buyshop\.php/(.*)$ buyshop.php?s=/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^website/?$ admin.php?s=website [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^website/(.*)$ admin.php?s=website/$1 [QSA,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^site/(.*)$ admin.php?s=site/$1 [QSA,L]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>

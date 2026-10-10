@@ -1,0 +1,1 @@
+import{r as e}from"./index-CTO9TwcJ.js";const u={getList(t){return e({url:"/YunkucunGoodsExchangeApi/getList",method:"post",data:t})},getDetail(t){return e({url:"/YunkucunGoodsExchangeApi/getDetail",method:"post",data:{id:t}})}};export{u as y};

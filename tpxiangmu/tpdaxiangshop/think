@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+namespace think;
+define('ROOT_PATH', __DIR__ . '/');
+
+if (!function_exists(__NAMESPACE__ . '\\resolveCliPreUrl')) {
+    function resolveCliPreUrl(): string
+    {
+        $candidates = [
+            getenv('CLI_PRE_URL2'),
+            getenv('CLI_PRE_URL'),
+            getenv('PRE_URL2'),
+            getenv('PRE_URL'),
+            getenv('APP_URL'),
+        ];
+
+        foreach ($candidates as $candidate) {
+            $value = trim((string) $candidate);
+            if ($value !== '') {
+                return rtrim($value, '/');
+            }
+        }
+
+        return 'http://127.0.0.1';
+    }
+}
+
+if (!defined('PRE_URL')) {
+    define('PRE_URL', resolveCliPreUrl());
+}
+
+if (!defined('PRE_URL2')) {
+    define('PRE_URL2', resolveCliPreUrl());
+}
+
+// 命令行入口文件
+// 加载基础文件
+require __DIR__ . '/vendor/autoload.php';
+
+// 应用初始化
+(new App())->console->run();

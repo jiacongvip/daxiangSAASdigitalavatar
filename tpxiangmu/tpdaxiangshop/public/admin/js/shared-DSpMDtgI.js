@@ -1,0 +1,1 @@
+import{bX as e}from"./antd-vendor-BXeG7MAg.js";const o=(r,t="-")=>{const s=Number(r||0);return!Number.isFinite(s)||s<=0?t:e.unix(s).format("YYYY-MM-DD HH:mm:ss")},i={0:"待审核",1:"已通过",2:"已驳回"},n={0:"processing",1:"success",2:"error"},c={WECHAT:"微信人脸",ALIPAY:"支付宝人脸"};export{i as a,c,o as f,n as r};
